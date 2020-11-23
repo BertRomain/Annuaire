@@ -1,7 +1,0 @@
-package fr.eql.ai108.groupeRMR.Import;
-
-public class TestMathilda extends Import {
-//Test commit Mathilda
-	//TEst 2 Thilda
-	//3e test thilda
-}
