@@ -1,5 +1,9 @@
 package fr.eql.ai108.groupeRMR.model;
 
-public class InternDao {
+import java.io.File;
 
-} //end of InternDao class 
+public class InternDao {
+	
+	private File file = new File("annuaire.csv");
+
+}

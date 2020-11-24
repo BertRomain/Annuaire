@@ -1,14 +1,38 @@
 package fr.eql.ai108.groupeRMR.ihm;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
 
-public class AdminPane extends Application {
+import javafx.scene.layout.BorderPane;
 
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		// TODO Auto-generated method stub
 
+public class AdminPane extends BorderPane {
+	
+	private TablePannel tablePannel = new TablePannel();
+	private FormPannel formPannel = new FormPannel();
+	
+	public AdminPane() {
+		super();
+		setLeft(formPannel);
+		setCenter(tablePannel);
 	}
+
+	public TablePannel getTablePannel() {
+		return tablePannel;
+	}
+
+	public void setTablePannel(TablePannel tablePannel) {
+		this.tablePannel = tablePannel;
+	}
+
+	public FormPannel getFormPannel() {
+		return formPannel;
+	}
+
+	public void setFormPannel(FormPannel formPannel) {
+		this.formPannel = formPannel;
+	}
+	
+	
+
+
 
 }
