@@ -1,0 +1,20 @@
+/* Pour accéder à une classe:   .nomClasse */
+
+.button{
+	-fx-background-color: linear-gradient(#ff5400, #be1d00);
+	-fx-background-radius:30;
+	-fx-text-fill: white;
+}
+.button:pressed {
+    -fx-padding: 10 15 13 15;
+    -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
+}
+
+.customButton{
+	-fx-background-color: linear-gradient(#4169e1, #000080);
+}
+
+/* J'accède à un id avec #nomId */
+#bigButton{
+	-fx-font-size: 40;
+}
