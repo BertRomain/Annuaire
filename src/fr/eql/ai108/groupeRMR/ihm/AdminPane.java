@@ -7,7 +7,7 @@ import javafx.scene.layout.BorderPane;
 public class AdminPane extends BorderPane {
 	
 	private TablePannel tablePannel = new TablePannel();
-	private FormPannel formPannel = new FormPannel();
+	private FormPannelAdmin formPannel = new FormPannelAdmin();
 	
 	public AdminPane() {
 		super();
@@ -23,11 +23,11 @@ public class AdminPane extends BorderPane {
 		this.tablePannel = tablePannel;
 	}
 
-	public FormPannel getFormPannel() {
+	public FormPannelAdmin getFormPannel() {
 		return formPannel;
 	}
 
-	public void setFormPannel(FormPannel formPannel) {
+	public void setFormPannel(FormPannelAdmin formPannel) {
 		this.formPannel = formPannel;
 	}
 	

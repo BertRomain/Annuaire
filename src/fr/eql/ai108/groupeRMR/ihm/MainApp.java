@@ -1,18 +1,25 @@
 package fr.eql.ai108.groupeRMR.ihm;
 
 import javafx.application.Application;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class MainApp extends Application {
 
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	public static void main(String[] args) {
 		launch(args);
+	}
+	@Override
+	public void start(Stage stage) throws Exception {
+		AdminPane root = new AdminPane();
+		stage.setTitle("TP Annuaire");
+		Scene scene = new Scene(root);
+		stage.setScene(scene);
+		stage.sizeToScene();
+		stage.show();
+		
 	}
 
 }
