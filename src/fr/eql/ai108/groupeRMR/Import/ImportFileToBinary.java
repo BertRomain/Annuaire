@@ -13,12 +13,12 @@ public class ImportFileToBinary {
 		
 	}
 	
-	private static int lastNameLength = 100;
-	private static int firstNameLength = 100;
-	private static int departmentLength = 3;
-	private static int promotionLength = 20;
-	private static int yearLength = 4;
-	//private static int lengthOfRecords = 232;
+	private static int lastNameLength;
+	private static int firstNameLength;
+	private static int departmentLength;
+	private static int promotionLength;
+	private static int yearLength;
+	//private static int lengthOfRecords = 260;
 	
 	private static File writeFile(File fileInterns) {
 
@@ -36,9 +36,9 @@ public class ImportFileToBinary {
 			while(br.ready()) {
 				lastNameLength = 100;
 				firstNameLength = 100;
-				departmentLength = 3;
-				promotionLength = 20;
-				yearLength = 4;
+				departmentLength = 5;
+				promotionLength = 40;
+				yearLength = 10;
 				
 				try {
 					int y = 0;
