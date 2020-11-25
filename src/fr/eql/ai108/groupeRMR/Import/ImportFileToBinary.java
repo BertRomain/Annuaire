@@ -110,7 +110,6 @@ public class ImportFileToBinary {
 					line = br.readLine();
 					
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
