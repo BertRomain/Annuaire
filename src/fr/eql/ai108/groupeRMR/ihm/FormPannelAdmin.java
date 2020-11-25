@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -16,7 +17,7 @@ public class FormPannelAdmin extends GridPane {
 	private Label lblFirstName;
 	private TextField txtFirstName;
 	private Label lblDepartment;
-	private ChoiceBox<String> cbDepartment;
+	private ComboBox<String> cbDepartment;
 	private Label lblPromotion;
 	private TextField txtPromotion;
 	private Label lblYear;
@@ -44,8 +45,9 @@ public class FormPannelAdmin extends GridPane {
 		addRow(1, lblFirstName, txtFirstName);
 		
 		lblDepartment = new Label("Département / Pays ");
-		cbDepartment = new ChoiceBox<>();
-		cbDepartment.getItems().addAll("01","02","03","04","05","06","07","08","09",
+		cbDepartment = new ComboBox<>();
+		cbDepartment.getItems().addAll("Choisir","01","02","03",
+				"04","05","06","07","08","09",
 				"11","12","13","14","15","16","17","18","19",
 				"20","21","22","23","24","25","26","27","28","29",
 				"30","31","32","33","34","35","36","37","38","39",
@@ -57,6 +59,8 @@ public class FormPannelAdmin extends GridPane {
 				"90","91","92","93","94","95",
 				"971","972","973","974","976");
 		addRow(2, lblDepartment,cbDepartment);
+		cbDepartment.setVisibleRowCount(10);
+		//cbDepartment.setStyle("-fx-background-color: grey");
 		
 		lblPromotion = new Label ("Promotion");
 		txtPromotion = new TextField ();
@@ -75,9 +79,10 @@ public class FormPannelAdmin extends GridPane {
 		btnUserBox.setAlignment(Pos.CENTER);
 		add(btnUserBox, 0, 10, 2, 1);
 		
-		btnFullExport = new Button("Exporter Annuaire" + "\n" +"(format Pdf)");
+		btnFullExport = new Button("Exporter Annuaire" + 
+		"\n" +"(entier en Pdf)");
 		btnFullExport.setPrefSize(250, 100);
-		btnSelectionExport = new Button("Exporter extrait annuaire "+ "\n" +"(format Pdf)");
+		btnSelectionExport = new Button("Exporter Annuaire "+ "\n" +"(extrait en Pdf)");
 		btnSelectionExport.setPrefSize(250, 100);
 		btnExportBox = new HBox(50);
 		btnExportBox.getChildren().addAll(btnSelectionExport,btnFullExport);
@@ -98,6 +103,158 @@ public class FormPannelAdmin extends GridPane {
 		
 		
 
+	}
+
+	public Label getLblLastName() {
+		return lblLastName;
+	}
+
+	public void setLblLastName(Label lblLastName) {
+		this.lblLastName = lblLastName;
+	}
+
+	public TextField getTxtLastName() {
+		return txtLastName;
+	}
+
+	public void setTxtLastName(TextField txtLastName) {
+		this.txtLastName = txtLastName;
+	}
+
+	public Label getLblFirstName() {
+		return lblFirstName;
+	}
+
+	public void setLblFirstName(Label lblFirstName) {
+		this.lblFirstName = lblFirstName;
+	}
+
+	public TextField getTxtFirstName() {
+		return txtFirstName;
+	}
+
+	public void setTxtFirstName(TextField txtFirstName) {
+		this.txtFirstName = txtFirstName;
+	}
+
+	public Label getLblDepartment() {
+		return lblDepartment;
+	}
+
+	public void setLblDepartment(Label lblDepartment) {
+		this.lblDepartment = lblDepartment;
+	}
+
+	public ComboBox<String> getCbDepartment() {
+		return cbDepartment;
+	}
+
+	public void setCbDepartment(ComboBox<String> cbDepartment) {
+		this.cbDepartment = cbDepartment;
+	}
+
+	public Label getLblPromotion() {
+		return lblPromotion;
+	}
+
+	public void setLblPromotion(Label lblPromotion) {
+		this.lblPromotion = lblPromotion;
+	}
+
+	public TextField getTxtPromotion() {
+		return txtPromotion;
+	}
+
+	public void setTxtPromotion(TextField txtPromotion) {
+		this.txtPromotion = txtPromotion;
+	}
+
+	public Label getLblYear() {
+		return lblYear;
+	}
+
+	public void setLblYear(Label lblYear) {
+		this.lblYear = lblYear;
+	}
+
+	public TextField getTxtYear() {
+		return txtYear;
+	}
+
+	public void setTxtYear(TextField txtYear) {
+		this.txtYear = txtYear;
+	}
+
+	public Button getBtnSearch() {
+		return btnSearch;
+	}
+
+	public void setBtnSearch(Button btnSearch) {
+		this.btnSearch = btnSearch;
+	}
+
+	public Button getBtnAdd() {
+		return btnAdd;
+	}
+
+	public void setBtnAdd(Button btnAdd) {
+		this.btnAdd = btnAdd;
+	}
+
+	public Button getBtnFullExport() {
+		return btnFullExport;
+	}
+
+	public void setBtnFullExport(Button btnFullExport) {
+		this.btnFullExport = btnFullExport;
+	}
+
+	public Button getBtnSelectionExport() {
+		return btnSelectionExport;
+	}
+
+	public void setBtnSelectionExport(Button btnSelectionExport) {
+		this.btnSelectionExport = btnSelectionExport;
+	}
+
+	public Button getBtnRefresh() {
+		return btnRefresh;
+	}
+
+	public void setBtnRefresh(Button btnRefresh) {
+		this.btnRefresh = btnRefresh;
+	}
+
+	public Button getBtnDelete() {
+		return btnDelete;
+	}
+
+	public void setBtnDelete(Button btnDelete) {
+		this.btnDelete = btnDelete;
+	}
+
+	public HBox getBtnUserBox() {
+		return btnUserBox;
+	}
+
+	public void setBtnUserBox(HBox btnUserBox) {
+		this.btnUserBox = btnUserBox;
+	}
+
+	public HBox getBtnExportBox() {
+		return btnExportBox;
+	}
+
+	public void setBtnExportBox(HBox btnExportBox) {
+		this.btnExportBox = btnExportBox;
+	}
+
+	public HBox getBtnAdminBox() {
+		return btnAdminBox;
+	}
+
+	public void setBtnAdminBox(HBox btnAdminBox) {
+		this.btnAdminBox = btnAdminBox;
 	}
 	
 	

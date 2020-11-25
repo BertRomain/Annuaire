@@ -2,6 +2,8 @@ package fr.eql.ai108.groupeRMR.ihm;
 
 import fr.eql.ai108.groupeRMR.model.Intern;
 import fr.eql.ai108.groupeRMR.model.InternDao;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
@@ -49,6 +51,28 @@ public class TablePannel extends AnchorPane {
 		AnchorPane.setLeftAnchor(tableView, 5.);
 		AnchorPane.setRightAnchor(tableView, 5.);
 		AnchorPane.setBottomAnchor(tableView, 5.);
+		
+		tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Intern>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Intern> observable, Intern oldValue, Intern newValue) {
+				AdminPane root = (AdminPane) TablePannel.this.getScene().getRoot();
+				FormPannelAdmin formPannelAdmin = root.getFormPannel();
+				if(newValue != null) {
+					formPannelAdmin.getTxtLastName().setText(newValue.getLastName());
+					formPannelAdmin.getTxtFirstName().setText(newValue.getFirstName());
+					for (String str : formPannelAdmin.getCbDepartment().getItems()){
+						 
+						if(str.startsWith(newValue.getDepartment())){
+							formPannelAdmin.getCbDepartment().getSelectionModel().select(str);
+						}
+					}
+					formPannelAdmin.getTxtPromotion().setText(newValue.getPromotion());
+					formPannelAdmin.getTxtYear().setText(Integer.toString(newValue.getYear()));
+					
+				}
+			}
+		});
 		
 	}
 

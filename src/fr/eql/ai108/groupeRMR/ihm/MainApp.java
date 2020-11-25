@@ -14,12 +14,11 @@ public class MainApp extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		AdminPane root = new AdminPane();
-		stage.setTitle("TP Annuaire");
+		stage.setTitle("ANNUAIRE EQL");
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("./RMRstylesheet.css")
 				.toExternalForm());
 		stage.setScene(scene);
-		//stage.sizeToScene();
 		stage.setMaximized(true);
 		stage.show();
 		

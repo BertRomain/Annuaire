@@ -17,7 +17,7 @@ public class InternDao {
 	private Intern stringToIntern (String line) {
 		
 		String[] infos = line.split(";");
-		Intern intern = new Intern(infos[0].trim(),infos[1].trim(),(infos[2].trim()),
+		Intern intern = new Intern(infos[0].trim().toUpperCase(),(infos[1].trim().substring(0, 1).toUpperCase() + infos[0].trim().substring(1).toLowerCase()),(infos[2].trim()),
 				infos[3].trim(),Integer.parseInt(infos[4].trim()));		
 		return intern;
 	}
