@@ -26,17 +26,17 @@ public class TablePannel extends AnchorPane {
 		TableColumn<Intern, String> colLastName = new TableColumn<>("Nom");
 		colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
 		
-		TableColumn<Intern, String> colFirstName = new TableColumn<>("PrÃ©nom");
+		TableColumn<Intern, String> colFirstName = new TableColumn<>("Prénom");
 		colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
 		
-		TableColumn<Intern, Integer> colDepartment = new TableColumn<>("DÃ©partement");
+		TableColumn<Intern, Integer> colDepartment = new TableColumn<>("Département");
 		colDepartment.setCellValueFactory(new PropertyValueFactory<>("department"));
 		
 		TableColumn<Intern, String> colPromotion = new TableColumn<>("Promotion");
 		colPromotion.setCellValueFactory(new PropertyValueFactory<>("promotion"));
 		
-		TableColumn<Intern, Integer> colYear = new TableColumn<>("AnnÃ©e");
-		colYear.setCellValueFactory(new PropertyValueFactory<>("yaer"));
+		TableColumn<Intern, Integer> colYear = new TableColumn<>("Année");
+		colYear.setCellValueFactory(new PropertyValueFactory<>("year"));
 		
 		tableView.getColumns().addAll(colLastName,colFirstName, colDepartment,colPromotion,colYear);		
 		tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);

@@ -34,11 +34,11 @@ public class FormPannelAdmin extends GridPane {
 		txtLastName = new TextField();
 		addRow(0, lblLastName, txtLastName);
 		
-		lblFirstName = new Label("PrÃ©nom ");
+		lblFirstName = new Label("Prénom ");
 		txtFirstName = new TextField();
 		addRow(1, lblFirstName, txtFirstName);
 		
-		lblDepartment = new Label("DÃ©partement ");
+		lblDepartment = new Label("Département ");
 		cbDepartment = new ChoiceBox<>();
 		cbDepartment.getItems().addAll("01","02","03","04","05","06","07","08","09",
 				"11","12","13","14","15","16","17","18","19",
@@ -57,7 +57,7 @@ public class FormPannelAdmin extends GridPane {
 		txtPromotion = new TextField ();
 		addRow(3, lblPromotion,txtPromotion);
 		
-		lblYear = new Label("AnnÃ©e ");
+		lblYear = new Label("Année ");
 		txtYear  = new TextField();
 		addRow(4, lblYear,txtYear);
 
