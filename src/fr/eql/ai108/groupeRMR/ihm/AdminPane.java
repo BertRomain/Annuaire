@@ -11,7 +11,6 @@ public class AdminPane extends BorderPane {
 	private FormPannelAdmin formPannel = new FormPannelAdmin();
 	private Label titreAdmin = new Label("	ANNUAIRE EQL Page Admin");
 	
-	
 	public AdminPane() {
 		super();
 		titreAdmin.setId("titleLabel");
