@@ -15,8 +15,9 @@ public class InternDao {
 	private File file = new File("C:/Users/formation/Desktop/intern.bin");
 	
 	private Intern stringToIntern (String line) {
+		
 		String[] infos = line.split(";");
-		Intern intern = new Intern(infos[0].trim(),infos[1].trim(),Integer.parseInt(infos[2].trim()),
+		Intern intern = new Intern(infos[0].trim(),infos[1].trim(),(infos[2].trim()),
 				infos[3].trim(),Integer.parseInt(infos[4].trim()));		
 		return intern;
 	}

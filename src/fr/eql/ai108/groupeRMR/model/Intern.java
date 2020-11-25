@@ -4,7 +4,7 @@ public class Intern {
 	
 	private String lastName;
 	private String firstName;
-	private int department;
+	private String department;
 	private String promotion;
 	private int year;
 	
@@ -13,7 +13,7 @@ public class Intern {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Intern(String lastName, String firstName, int department, String promotion, int year) {
+	public Intern(String lastName, String firstName, String department, String promotion, int year) {
 		super();
 		this.lastName = lastName;
 		this.firstName = firstName;
@@ -23,11 +23,12 @@ public class Intern {
 	}
 
 	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + department;
+		result = prime * result + ((department == null) ? 0 : department.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((promotion == null) ? 0 : promotion.hashCode());
@@ -44,7 +45,10 @@ public class Intern {
 		if (getClass() != obj.getClass())
 			return false;
 		Intern other = (Intern) obj;
-		if (department != other.department)
+		if (department == null) {
+			if (other.department != null)
+				return false;
+		} else if (!department.equals(other.department))
 			return false;
 		if (firstName == null) {
 			if (other.firstName != null)
@@ -88,11 +92,11 @@ public class Intern {
 		this.firstName = firstName;
 	}
 
-	public int getDepartment() {
+	public String getDepartment() {
 		return department;
 	}
 
-	public void setDepartment(int department) {
+	public void setDepartment(String department) {
 		this.department = department;
 	}
 
