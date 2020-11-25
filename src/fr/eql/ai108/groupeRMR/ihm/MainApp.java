@@ -16,8 +16,11 @@ public class MainApp extends Application {
 		AdminPane root = new AdminPane();
 		stage.setTitle("TP Annuaire");
 		Scene scene = new Scene(root);
+		scene.getStylesheets().add(getClass().getResource("./RMRstylesheet.css")
+				.toExternalForm());
 		stage.setScene(scene);
-		stage.sizeToScene();
+		//stage.sizeToScene();
+		stage.setMaximized(true);
 		stage.show();
 		
 	}

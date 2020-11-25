@@ -29,7 +29,7 @@ public class TablePannel extends AnchorPane {
 		TableColumn<Intern, String> colFirstName = new TableColumn<>("Prénom");
 		colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
 		
-		TableColumn<Intern, Integer> colDepartment = new TableColumn<>("Département");
+		TableColumn<Intern, Integer> colDepartment = new TableColumn<>("Département" + "\n" + "Pays");
 		colDepartment.setCellValueFactory(new PropertyValueFactory<>("department"));
 		
 		TableColumn<Intern, String> colPromotion = new TableColumn<>("Promotion");
@@ -37,13 +37,14 @@ public class TablePannel extends AnchorPane {
 		
 		TableColumn<Intern, Integer> colYear = new TableColumn<>("Année");
 		colYear.setCellValueFactory(new PropertyValueFactory<>("year"));
+		//colYear.setMaxWidth(50);
 		
 		tableView.getColumns().addAll(colLastName,colFirstName, colDepartment,colPromotion,colYear);		
 		tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		getChildren().add(tableView);
 		
 		
-		setPrefSize(1000, 500);
+		//setPrefSize(1000, 900);
 		AnchorPane.setTopAnchor(tableView, 5.);
 		AnchorPane.setLeftAnchor(tableView, 5.);
 		AnchorPane.setRightAnchor(tableView, 5.);

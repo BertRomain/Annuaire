@@ -13,6 +13,7 @@ public class AdminPane extends BorderPane {
 		super();
 		setLeft(formPannel);
 		setCenter(tablePannel);
+		setPrefSize(1800, 900);
 	}
 
 	public TablePannel getTablePannel() {
