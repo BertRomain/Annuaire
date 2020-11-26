@@ -1,24 +1,21 @@
 package fr.eql.ai108.groupeRMR.ihm;
 
-
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 
-
-public class AdminPane extends BorderPane {
-	
+public class UserPane extends BorderPane {
 	private TablePannel tablePannel = new TablePannel();
-	private FormPannelAdmin formPannel = new FormPannelAdmin();
-	private Label titleAdmin = new Label("	ANNUAIRE EQL Page Admin");
-	
-	public AdminPane() {
+	private FormPannelUser formPannel = new FormPannelUser();
+	private Label titleUser = new Label("	ANNUAIRE EQL");
+
+	public UserPane() {
 		super();
-		titleAdmin.setId("titleLabel");
-		setTop(titleAdmin);
+		titleUser.setId("titleLabel");
+		setTop(titleUser);
 		setLeft(formPannel);	
 		setCenter(tablePannel);
 		setPrefSize(1919, 1008);
-		
+
 	}
 
 	public TablePannel getTablePannel() {
@@ -29,16 +26,19 @@ public class AdminPane extends BorderPane {
 		this.tablePannel = tablePannel;
 	}
 
-	public FormPannelAdmin getFormPannel() {
+	public FormPannelUser getFormPannel() {
 		return formPannel;
 	}
 
-	public void setFormPannel(FormPannelAdmin formPannel) {
+	public void setFormPannel(FormPannelUser formPannel) {
 		this.formPannel = formPannel;
 	}
-	
-	
 
+	public Label getTitleUser() {
+		return titleUser;
+	}
 
-
+	public void setTitleUser(Label titleUser) {
+		this.titleUser = titleUser;
+	}
 }

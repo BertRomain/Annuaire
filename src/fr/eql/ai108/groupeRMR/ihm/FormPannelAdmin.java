@@ -60,6 +60,7 @@ public class FormPannelAdmin extends GridPane {
 				"971","972","973","974","976");
 		addRow(2, lblDepartment,cbDepartment);
 		cbDepartment.setVisibleRowCount(10);
+		cbDepartment.getSelectionModel().select(0);;
 		//cbDepartment.setStyle("-fx-background-color: grey");
 		
 		lblPromotion = new Label ("Promotion");

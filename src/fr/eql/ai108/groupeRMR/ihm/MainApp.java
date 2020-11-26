@@ -20,7 +20,6 @@ public class MainApp extends Application {
 				.toExternalForm());
 		stage.setTitle("ANNUAIRE EQL");
 		stage.setScene(scene);
-//		stage.setMaximized(true);
 		
 		stage.show();
 
