@@ -61,7 +61,4 @@ public class FirstPaneWelcome extends BorderPane {
 		this.lblWelcome = lblWelcome;
 	}
 	
-	
-	
-
 }
