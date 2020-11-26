@@ -59,6 +59,5 @@ public class FirstPaneWelcome extends BorderPane {
 
 	public void setLblWelcome(Label lblWelcome) {
 		this.lblWelcome = lblWelcome;
-	}
-	
+	}	
 }
