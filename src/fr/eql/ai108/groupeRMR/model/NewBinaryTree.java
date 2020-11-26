@@ -12,7 +12,6 @@ public class NewBinaryTree {
 //	private static int index = 0;
 	static Node root;
 	static NewBinaryTree bt = new NewBinaryTree();
-	
 
 	private static void writeFile(File interns, Node current) {
 
