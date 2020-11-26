@@ -22,7 +22,6 @@ public class FirstPaneWelcome extends BorderPane {
 		setBottom(hBoxAdminAccessBtn);		
 		setPrefSize(1919, 1008);
 		
-		
 		btnWelcome.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
