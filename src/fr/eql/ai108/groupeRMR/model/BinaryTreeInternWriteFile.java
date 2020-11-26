@@ -89,7 +89,7 @@ public class BinaryTreeInternWriteFile {
 		}
 	}
 
-	private static String nodeToString(Node origin) {
+	protected static String nodeToString(Node origin) {
 		String nodeValue = origin.toString();
 		return nodeValue;
 	}
@@ -102,7 +102,6 @@ public class BinaryTreeInternWriteFile {
 	}
 	
 	public static Node addRecursive(Node current, String internString) {
-
 		if (current == null) {
 			return new Node(internString);
 		}
