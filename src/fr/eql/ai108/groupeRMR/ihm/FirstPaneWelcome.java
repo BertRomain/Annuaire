@@ -63,6 +63,5 @@ public class FirstPaneWelcome extends BorderPane {
 	
 	
 	
-	
 
 }
