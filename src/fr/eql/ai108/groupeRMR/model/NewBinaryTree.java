@@ -5,11 +5,13 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.Comparator;
 
-public class NewBinaryTree {
+​public class NewBinaryTree {
+
 	static File interns = new File("C:/Users/Formation/Desktop/intern.bin");
-//	private static int lengthOfRecord = 260;
-//	private static int index = 0;
+	//	private static int lengthOfRecord = 260;
+	//	private static int index = 0;
 	static Node root;
 	static NewBinaryTree bt = new NewBinaryTree();
 
@@ -24,11 +26,10 @@ public class NewBinaryTree {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} 
-		
 	}
 
-
 	public static void traverseInOrder(Node node) {
+
 		if (node != null) {
 			traverseInOrder(node.left);
 			writeFile(interns, node);
@@ -38,7 +39,6 @@ public class NewBinaryTree {
 			System.out.println(nodeToString(node));
 		}
 	}
-
 
 	private static void readFile(File fileInterns) {
 
@@ -51,28 +51,29 @@ public class NewBinaryTree {
 			br = new BufferedReader(in);
 			String line;
 			raf = new RandomAccessFile(fileInterns, "rw");
-//			long offset = index*lengthOfRecord;
+			//			long offset = index*lengthOfRecord;
 
-			while (br.ready()) {
+ 		while (br.ready()) {
 				line = br.readLine();
 				NewBinaryTree.add(line);
-//				index ++;
+				//				index ++;
 			}
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
+
 			try {
 				br.close();
 				in.close();
-//				raf.close();
+				//				raf.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
 	}
 
-	static class Node {
+​	static class Node {
 
 		String internString;
 		Node left;
@@ -82,32 +83,41 @@ public class NewBinaryTree {
 			right = null;
 			left = null;
 		}
-		
-		public static int compareTo(Node node) {
-			return Node.compareTo(node);
+		public static Boolean compareTo(Node nodeA, Node nodeB) {
+			return nodeA.equals(nodeB);
 		}
-	}
+
+				Comparator<Node> comparator = new Comparator<NewBinaryTree.Node>() {
+
+			@Override
+			public int compare(Node o1, Node o2) {
+				// TODO Auto-generated method stub
+				return 0	;
+			}
+		};
+	}	
 
 	protected static String nodeToString(Node origin) {
 		String nodeValue = origin.toString();
 		return nodeValue;
 	}
-	
 
 	private static byte[] nodeToByte(Node origin) {
 		String nodeValue = origin.toString();
 		byte[] b = new byte[nodeValue.length()];
 		return b;
 	}
-	
+
 	public static Node addRecursive(Node current, String internString) {
 		if (current == null) {
 			return new Node(internString);
 		}
-		if (internString.compareTo(nodeToString(current)) > 0 ) {
+		if (nodeCompare.compare(current, interString) < 0 ) {
 			current.left = addRecursive(current.left, internString);
-		} else if (internString.compareTo(nodeToString(current)) < 0 ) {
+			System.out.println("plus petit que current");
+		} else if (internString.compareTo(nodeToString(current)) > 0 ) {
 			current.right = addRecursive(current.right, internString);
+			System.out.println("plus grand que current");
 		} else {
 			return current;
 		}
@@ -119,19 +129,15 @@ public class NewBinaryTree {
 	}
 
 	public static NewBinaryTree createBinaryTree() {
-
-		readFile(interns);
-		traverseInOrder(root);
 		
+		readFile(interns);		
 		return bt;
 
 	}
 
-
-
 	public static void main(String[] args) {
 		createBinaryTree();
-		
-
+		traverseInOrder(root);
 	}
+
 }
