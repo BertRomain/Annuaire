@@ -33,7 +33,7 @@ public class InternDao {
 		sb.append(intern.getPromotion());
 		sb.append(";");
 		sb.append(intern.getYear());
-		sb.append(";");
+		sb.append("\n");
 	
 		return sb.toString();
 	}

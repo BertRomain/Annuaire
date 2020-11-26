@@ -15,10 +15,9 @@ public class AdminPane extends BorderPane {
 		super();
 		titreAdmin.setId("titleLabel");
 		setTop(titreAdmin);
-		setLeft(formPannel);
+		setLeft(formPannel);	
 		setCenter(tablePannel);
-
-		setPrefSize(1800, 900);
+		setPrefSize(1919, 1008);
 		
 	}
 
