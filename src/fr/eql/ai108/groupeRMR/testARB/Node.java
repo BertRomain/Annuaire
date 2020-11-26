@@ -20,7 +20,7 @@ public class Node {
 	public void setMot(String mot) {
 		this.mot = mot;
 	}
-
+	
 	public String getMot() {
 		return mot;
 	}
