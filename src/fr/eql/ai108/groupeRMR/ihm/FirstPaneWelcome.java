@@ -23,6 +23,7 @@ public class FirstPaneWelcome extends BorderPane {
 		setPrefSize(1919, 1008);
 		
 		
+		
 		btnWelcome.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
