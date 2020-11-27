@@ -105,7 +105,7 @@ public class ImportFileToBinary {
 						raf.writeByte(' ');
 					} // end of for y
 					if(y == yearLength) {
-						raf.writeByte('\n');
+						raf.writeByte('\r');
 					} // end of if y
 					line = br.readLine();
 					
