@@ -76,9 +76,28 @@ public class TablePannel extends AnchorPane {
 		
 	}
 
-	
-	
-	
-	
+	public InternDao getDao() {
+		return dao;
+	}
+
+	public void setDao(InternDao dao) {
+		this.dao = dao;
+	}
+
+	public ObservableList<Intern> getObservableInterns() {
+		return observableInterns;
+	}
+
+	public void setObservableInterns(ObservableList<Intern> observableInterns) {
+		this.observableInterns = observableInterns;
+	}
+
+	public TableView<Intern> getTableView() {
+		return tableView;
+	}
+
+	public void setTableView(TableView<Intern> tableView) {
+		this.tableView = tableView;
+	}
 
 }

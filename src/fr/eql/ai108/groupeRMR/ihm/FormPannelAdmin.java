@@ -1,11 +1,15 @@
 package fr.eql.ai108.groupeRMR.ihm;
 
+import fr.eql.ai108.groupeRMR.model.Intern;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -72,9 +76,44 @@ public class FormPannelAdmin extends GridPane {
 		addRow(4, lblYear,txtYear);		
 		
 		btnSearch = new Button("Rechercher");
-		btnSearch.setPrefSize(250, 100);		
+		btnSearch.setPrefSize(250, 100);	
+		
+		btnSearch.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				String lastName = txtLastName.getText().toUpperCase();
+				String fisrtName = txtFirstName.getText();
+				String department = cbDepartment.getSelectionModel().getSelectedItem();
+				String promotion = txtPromotion.getText();
+				int year = Integer.parseInt(txtYear.getText());
+				Intern intern = new Intern(lastName, fisrtName, department, promotion, year);
+				
+			}
+		});
+		
+		
 		btnAdd = new Button("Ajouter un stagiaire");
 		btnAdd.setPrefSize(250, 100);
+		
+		btnAdd.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				String lastName = txtLastName.getText().toUpperCase();
+				String fisrtName = txtFirstName.getText();
+				String department = cbDepartment.getSelectionModel().getSelectedItem();
+				String promotion = txtPromotion.getText();
+				int year = Integer.parseInt(txtYear.getText());
+				Intern intern = new Intern(lastName, fisrtName, department, promotion, year);
+				
+				AdminPane adminPane = (AdminPane) getScene().getRoot();
+				adminPane.getTablePannel().getObservableInterns().add(intern);
+				
+			}
+		});
+		
+		
 		btnUserBox = new HBox(50);
 		btnUserBox.getChildren().addAll(btnSearch,btnAdd);
 		btnUserBox.setAlignment(Pos.CENTER);
@@ -92,6 +131,20 @@ public class FormPannelAdmin extends GridPane {
 		
 		btnDelete = new Button("Supprimer un stagiaire");
 		btnDelete.setPrefSize(250, 100);
+		
+		btnDelete.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				AdminPane adminPane = (AdminPane) FormPannelAdmin.this.getScene().getRoot();
+				TableView<Intern> intern = adminPane.getTablePannel().getTableView();
+				Intern intern1 = intern.getSelectionModel().getSelectedItem();
+				adminPane.getTablePannel().getObservableInterns().remove(intern1);
+				
+			}
+		});
+		
+		
 		btnRefresh = new Button("Mettre à jour");
 		btnRefresh.setPrefSize(250, 100);
 		btnAdminBox = new HBox(50);

@@ -74,7 +74,7 @@ public class ABR2 {
 	public void ecrireFichierTrie(Node rac) {
 		if (rac != null) {
 			ecrireFichierTrie(rac.getFg());
-			System.out.println(rac.getMot() + " (" + rac.getNbOcc() + " fois)");
+//			System.out.println(rac.getMot() + " (" + rac.getNbOcc() + " fois)");
 			ecrireFichierTrie(rac.getFd());
 		}		
 	}

@@ -1,68 +1,89 @@
 package fr.eql.ai108.groupeRMR.testARB;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.util.Scanner;
 
+
 public class ABR {
-	 private Node racine;
-	    
-	    public ABR() {}
-	    
-	    public ABR(String nomFichier)  throws IOException {
+	private Node racine;
+
+	public ABR() {}
+
+	public ABR(String nomFichier)  throws IOException {
 		construire(nomFichier);	
-	    }
-	    
-	    public void inserer(String mot) {
+	}
+
+	public void inserer(String mot) {
 		racine = inserer(racine, mot);
-	    }
-	    
-	    public Node inserer(Node rac, String mot ) {
+	}
+
+	public Node inserer(Node rac, String mot ) {
 		if (rac == null) {
-		    Node nouveau = new Node(mot);
-		    return nouveau;
+			Node nouveau = new Node(mot);
+			return nouveau;
 		}
 		if (mot.compareTo(rac.getMot()) < 0) rac.setFg(inserer(rac.getFg(), mot));
 		else if (mot.compareTo(rac.getMot()) == 0) rac.setNbOcc(rac.getNbOcc() + 1);
 		else rac.setFd(inserer(rac.getFd(), mot));
 		return rac;
-	    }
-	    
-	    public void construire(String nomFichier) throws IOException {
+	}
+
+	public void construire(String nomFichier) throws IOException {
 		Scanner lecteur = new Scanner(new File(nomFichier));
-		
+
 		while(lecteur.hasNext()) inserer(lecteur.next());
-	    }
-	    
-	    public int hauteur() {
+	}
+
+	public int hauteur() {
 		return hauteur(racine);
-	    }
-	    
-	    private int hauteur(Node rac) {
+	}
+
+	private int hauteur(Node rac) {
 		if (rac == null) return -1;
 		int hg = hauteur(rac.getFg());
 		int hd = hauteur(rac.getFd());
 		if (hg < hd) return hd + 1;
 		return hg + 1;
-	    }
-	    
-	    public void ecrireListeTriee() {
+	}
+
+	public void ecrireListeTriee() {
 		ecrireListeTriee(racine);
-	    }
-	    
-	    public void ecrireListeTriee(Node rac) {
+	}
+
+	public void ecrireListeTriee(Node rac) {
 		if (rac != null) {
-		    ecrireListeTriee(rac.getFg());
-		    System.out.println(rac.getMot() + " (" + rac.getNbOcc() + " fois)");
-		    ecrireListeTriee(rac.getFd());
+			ecrireListeTriee(rac.getFg());
+			System.out.println(rac.getMot() + " (" + rac.getNbOcc() + " fois)");
+			ecrireListeTriee(rac.getFd());
 		}		
-	    }
-	    
-	    public void ecrireFichierTrie(Node rac) {
-			if (rac != null) {
-				  ecrireFichierTrie(rac.getFg());
-				    System.out.println(rac.getMot() + " (" + rac.getNbOcc() + " fois)");
-				    ecrireFichierTrie(rac.getFd());
-			}		
-		    }
+	}
+	
+	static File interns = new File("C:/Users/Formation/Desktop/intern.bin");
+	public void ecrireFichierTrie() {
+ecrireFichierTrie(racine, raf);
+	}
+	RandomAccessFile raf = null;
+	public File ecrireFichierTrie(Node rac, RandomAccessFile raf) {
+	
+		if (interns.exists()) {
+			return interns ;
+		}
+		if (rac != null) {
+			try {
+				ecrireFichierTrie(rac.getFg(), raf);
+				raf.writeBytes(rac.getMot());
+				raf.writeBytes("\r\n");
+				System.out.println(rac.getMot() + " (" + rac.getNbOcc() + " fois)");
+				ecrireFichierTrie(rac.getFd(), raf);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		return interns; 
+	}
 }
