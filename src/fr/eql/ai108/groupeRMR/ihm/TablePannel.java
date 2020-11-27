@@ -15,7 +15,7 @@ public class TablePannel extends AnchorPane {
 	
 	private InternDao dao = new InternDao();
 	private ObservableList<Intern> observableInterns;
-	private TableView<Intern> tableView;
+	public static TableView<Intern> tableView;
 	
 	@SuppressWarnings("unchecked")
 	public TablePannel() {
