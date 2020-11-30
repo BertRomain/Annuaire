@@ -14,15 +14,24 @@ public class ImportFileToBinary {
 		
 	}
 	
-	private static int lastNameLength;
-	private static int firstNameLength;
-	private static int departmentLength;
-	private static int promotionLength;
-	private static int yearLength;
-	private static int childLeftLengh;
-	private static int childRightLengh;
-	//private static int lengthOfRecords = 278;
+	private static int lastNameLength = 100;
+	private static int firstNameLength = 100;
+	private static int departmentLength = 5;
+	private static int promotionLength = 40;
+	private static int yearLength = 10;
+	private static int childLeftLengh = 8;
+	private static int childRightLengh = 8;
+	private static int lengthOfRecords = lastNameLength + firstNameLength + departmentLength + promotionLength 
+			+ yearLength + childLeftLengh + childRightLengh + 7;
 	
+	public static int getLengthOfRecords() {
+		return lengthOfRecords;
+	}
+
+	public static void setLengthOfRecords(int lengthOfRecords) {
+		ImportFileToBinary.lengthOfRecords = lengthOfRecords;
+	}
+
 	private static File writeFile(File fileInterns) {
 
 		File binaryFile = new File(fileInterns.getParent()+"/intern.bin");
@@ -115,12 +124,12 @@ public class ImportFileToBinary {
 					line = br.readLine();
 					
 					for(i=0; i < childLeftLengh; i++) {
-						raf.writeByte(' ');
+						raf.writeByte('0');
 					}
 					raf.writeByte(';');
 					
 					for(i=0; i < childRightLengh; i++) {
-						raf.writeByte(' ');
+						raf.writeByte('0');
 					}
 					raf.writeByte(';');
 					
@@ -142,6 +151,62 @@ public class ImportFileToBinary {
 		
 
 		return binaryFile ;
+	}
+
+	public static int getLastNameLength() {
+		return lastNameLength;
+	}
+
+	public static void setLastNameLength(int lastNameLength) {
+		ImportFileToBinary.lastNameLength = lastNameLength;
+	}
+
+	public static int getFirstNameLength() {
+		return firstNameLength;
+	}
+
+	public static void setFirstNameLength(int firstNameLength) {
+		ImportFileToBinary.firstNameLength = firstNameLength;
+	}
+
+	public static int getDepartmentLength() {
+		return departmentLength;
+	}
+
+	public static void setDepartmentLength(int departmentLength) {
+		ImportFileToBinary.departmentLength = departmentLength;
+	}
+
+	public static int getPromotionLength() {
+		return promotionLength;
+	}
+
+	public static void setPromotionLength(int promotionLength) {
+		ImportFileToBinary.promotionLength = promotionLength;
+	}
+
+	public static int getYearLength() {
+		return yearLength;
+	}
+
+	public static void setYearLength(int yearLength) {
+		ImportFileToBinary.yearLength = yearLength;
+	}
+
+	public static int getChildLeftLengh() {
+		return childLeftLengh;
+	}
+
+	public static void setChildLeftLengh(int childLeftLengh) {
+		ImportFileToBinary.childLeftLengh = childLeftLengh;
+	}
+
+	public static int getChildRightLengh() {
+		return childRightLengh;
+	}
+
+	public static void setChildRightLengh(int childRightLengh) {
+		ImportFileToBinary.childRightLengh = childRightLengh;
 	}
 	
 
