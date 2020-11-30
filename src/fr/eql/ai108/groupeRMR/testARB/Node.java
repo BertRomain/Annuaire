@@ -1,12 +1,36 @@
 package fr.eql.ai108.groupeRMR.testARB;
 
 public class Node {
-	private String mot;
-	private Node fg, fd;
+	private String internLine;
+	private Node childL, childR;
 	private int nbOcc = 1;
 	
-	public Node(String mot) {
-		this.mot = mot;
+	public Node(String internLine) {
+		this.internLine = internLine;
+	}
+
+	public String getInternLine() {
+		return internLine;
+	}
+
+	public void setInternLine(String internLine) {
+		this.internLine = internLine;
+	}
+
+	public Node getChildL() {
+		return childL;
+	}
+
+	public void setChildL(Node childL) {
+		this.childL = childL;
+	}
+
+	public Node getChildR() {
+		return childR;
+	}
+
+	public void setChildR(Node childR) {
+		this.childR = childR;
 	}
 
 	public int getNbOcc() {
@@ -17,30 +41,5 @@ public class Node {
 		this.nbOcc = nbOcc;
 	}
 
-	public void setMot(String mot) {
-		this.mot = mot;
-	}
-	
-	public String getMot() {
-		return mot;
-	}
 
-	public void setDonnee(String mot) {
-		this.mot = mot;
-	}
-
-	public Node getFg() {
-		return fg;
-	}
-	public void setFg(Node fg) {
-		this.fg = fg;
-	}
-
-	public Node getFd() {
-		return fd;
-	}
-
-	public void setFd(Node fd) {
-		this.fd = fd;
-	}
 }

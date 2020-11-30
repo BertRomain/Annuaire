@@ -10,6 +10,7 @@ public class ImportFileToBinary {
 	static File stagiaires = new File("C:/Users/formation/Desktop/stagiaires.txt");
 	public static void main(String[] args) {
 		writeFile(stagiaires);
+		System.out.println("ok");
 		
 	}
 	
@@ -18,7 +19,9 @@ public class ImportFileToBinary {
 	private static int departmentLength;
 	private static int promotionLength;
 	private static int yearLength;
-	//private static int lengthOfRecords = 260;
+	private static int childLeftLengh;
+	private static int childRightLengh;
+	//private static int lengthOfRecords = 278;
 	
 	private static File writeFile(File fileInterns) {
 
@@ -39,6 +42,8 @@ public class ImportFileToBinary {
 				departmentLength = 5;
 				promotionLength = 40;
 				yearLength = 10;
+				childLeftLengh = 8;
+				childRightLengh = 8;
 				
 				try {
 					int y = 0;
@@ -105,9 +110,20 @@ public class ImportFileToBinary {
 						raf.writeByte(' ');
 					} // end of for y
 					if(y == yearLength) {
-						raf.writeByte('\r');
+						raf.writeByte(';');
 					} // end of if y
 					line = br.readLine();
+					
+					for(i=0; i < childLeftLengh; i++) {
+						raf.writeByte(' ');
+					}
+					raf.writeByte(';');
+					
+					for(i=0; i < childRightLengh; i++) {
+						raf.writeByte(' ');
+					}
+					raf.writeByte(';');
+					
 					
 				} catch (IOException e) {
 					e.printStackTrace();

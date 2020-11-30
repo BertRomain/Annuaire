@@ -6,7 +6,7 @@ import java.io.RandomAccessFile;
 import java.util.Scanner;
 
 public class ABR3 {
-	private Node racine;
+	private NodeOld racine;
 
 
 	public ABR3() {}
@@ -19,9 +19,9 @@ public class ABR3 {
 		racine = inserer(racine, mot);
 	}
 
-	public Node inserer(Node rac, String mot ) {
+	public NodeOld inserer(NodeOld rac, String mot ) {
 		if (rac == null) {
-			Node nouveau = new Node(mot);
+			NodeOld nouveau = new NodeOld(mot);
 			return nouveau;
 		}
 		if (mot.compareTo(rac.getMot()) < 0) rac.setFg(inserer(rac.getFg(), mot));
@@ -40,7 +40,7 @@ public class ABR3 {
 		return hauteur(racine);
 	}
 
-	private int hauteur(Node rac) {
+	private int hauteur(NodeOld rac) {
 		if (rac == null) return -1;
 		int hg = hauteur(rac.getFg());
 		int hd = hauteur(rac.getFd());
@@ -56,7 +56,7 @@ public class ABR3 {
 	private int lengthOfRecord = 260;
 	int index = 0;
 	int offset = 0;
-	public void ecrireListeTriee(Node rac) {
+	public void ecrireListeTriee(NodeOld rac) {
 		offset = index*lengthOfRecord;
 		if (rac != null) {
 			ecrireListeTriee(rac.getFg());	
@@ -78,7 +78,7 @@ public class ABR3 {
 		}		
 	}
 
-	public void ecrireFichierTrie(Node rac) {
+	public void ecrireFichierTrie(NodeOld rac) {
 		if (rac != null) {
 			ecrireFichierTrie(rac.getFg());
 //			System.out.println(rac.getMot() + " (" + rac.getNbOcc() + " fois)");

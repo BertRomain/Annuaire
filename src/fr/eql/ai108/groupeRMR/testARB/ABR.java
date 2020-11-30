@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 
 public class ABR {
-	private Node racine;
+	private NodeOld racine;
 
 	public ABR() {}
 
@@ -20,9 +20,9 @@ public class ABR {
 		racine = inserer(racine, mot);
 	}
 
-	public Node inserer(Node rac, String mot ) {
+	public NodeOld inserer(NodeOld rac, String mot ) {
 		if (rac == null) {
-			Node nouveau = new Node(mot);
+			NodeOld nouveau = new NodeOld(mot);
 			return nouveau;
 		}
 		if (mot.compareTo(rac.getMot()) < 0) rac.setFg(inserer(rac.getFg(), mot));
@@ -41,7 +41,7 @@ public class ABR {
 		return hauteur(racine);
 	}
 
-	private int hauteur(Node rac) {
+	private int hauteur(NodeOld rac) {
 		if (rac == null) return -1;
 		int hg = hauteur(rac.getFg());
 		int hd = hauteur(rac.getFd());
@@ -53,7 +53,7 @@ public class ABR {
 		ecrireListeTriee(racine);
 	}
 
-	public void ecrireListeTriee(Node rac) {
+	public void ecrireListeTriee(NodeOld rac) {
 		if (rac != null) {
 			ecrireListeTriee(rac.getFg());
 			System.out.println(rac.getMot() + " (" + rac.getNbOcc() + " fois)");
@@ -66,7 +66,7 @@ public class ABR {
 ecrireFichierTrie(racine, raf);
 	}
 	RandomAccessFile raf = null;
-	public File ecrireFichierTrie(Node rac, RandomAccessFile raf) {
+	public File ecrireFichierTrie(NodeOld rac, RandomAccessFile raf) {
 	
 		if (interns.exists()) {
 			return interns ;

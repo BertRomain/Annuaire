@@ -1,4 +1,4 @@
-package fr.eql.ai108.groupeRMR.model;
+package fr.eql.ai108.groupeRMR.testARB;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,6 +10,8 @@ import java.io.PrintWriter;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.List;
+
+import fr.eql.ai108.groupeRMR.model.Intern;
 
 public class BinaryTreeRomishFile {
 	private static int lastNameLength;
