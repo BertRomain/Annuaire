@@ -6,6 +6,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -14,9 +15,9 @@ import javafx.scene.layout.AnchorPane;
 public class TablePannel extends AnchorPane {
 	
 	private InternDao dao = new InternDao();
-	private ObservableList<Intern> observableInterns;
+	public static ObservableList<Intern> observableInterns;
 	public static TableView<Intern> tableView;
-	
+	 
 	@SuppressWarnings("unchecked")
 	public TablePannel() {
 		super();
@@ -24,7 +25,6 @@ public class TablePannel extends AnchorPane {
 		observableInterns = FXCollections.observableArrayList(dao.getAll2());
 		
 		tableView = new TableView<>(observableInterns);
-		
 		
 		TableColumn<Intern, String> colLastName = new TableColumn<>("Nom");
 		colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
@@ -58,7 +58,7 @@ public class TablePannel extends AnchorPane {
 			@Override
 			public void changed(ObservableValue<? extends Intern> observable, Intern oldValue, Intern newValue) {
 				AdminPane root = (AdminPane) TablePannel.this.getScene().getRoot();
-				FormPannelAdmin formPannelAdmin = root.getFormPannel();
+				OldFormPannelAdmin formPannelAdmin = root.getFormPannel();
 				if(newValue != null) {
 					formPannelAdmin.getTxtLastName().setText(newValue.getLastName());
 					formPannelAdmin.getTxtFirstName().setText(newValue.getFirstName());
@@ -75,6 +75,32 @@ public class TablePannel extends AnchorPane {
 			}
 		});
 		
+//		FilteredList<Intern> filteredInterns = new FilteredList<>(observableInterns, p -> true);
+//		
+//		txtSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+//			filteredInterns.setPredicate(intern -> {
+//				if (newValue = null || newValue.isEmpty()) {
+//					return true;
+//				}
+//				
+//				String lowerCaseFilter = newValue.toLowerCase();
+//				
+//				if(intern.getLasstName().toLowerCase().contains(lowerCaseFilter)) {
+//					return true;
+//				}else if (intern.getFirstName().toLowerCase().contains(lowerCaseFilter)) {
+//					return true;
+//				}else if(intern.getDepartment().toLowerCase().contains(lowerCaseFilter)) {
+//					return true;
+//				}else if (intern.getPromotion().toLowerCase().contains(lowerCaseFilter)) {
+//					return true;
+//				}else if (intern.getYear().toLowerCase().contains(lowercaseFilter)) {
+//					return true;
+//				}
+//			});
+//		});
+//		
+		
+		
 	}
 
 	public InternDao getDao() {
@@ -85,7 +111,7 @@ public class TablePannel extends AnchorPane {
 		this.dao = dao;
 	}
 
-	public ObservableList<Intern> getObservableInterns() {
+	public static ObservableList<Intern> getObservableInterns() {
 		return observableInterns;
 	}
 
@@ -93,12 +119,12 @@ public class TablePannel extends AnchorPane {
 		this.observableInterns = observableInterns;
 	}
 
-	public TableView<Intern> getTableView() {
+	public static TableView<Intern> getTableView() {
 		return tableView;
 	}
 
 	public void setTableView(TableView<Intern> tableView) {
 		this.tableView = tableView;
 	}
-
+	
 }

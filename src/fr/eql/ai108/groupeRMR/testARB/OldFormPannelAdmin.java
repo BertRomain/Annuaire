@@ -1,7 +1,12 @@
-package fr.eql.ai108.groupeRMR.ihm;
+package fr.eql.ai108.groupeRMR.testARB;
 
 import fr.eql.ai108.groupeRMR.model.ExportPdf;
 import fr.eql.ai108.groupeRMR.model.Intern;
+import fr.eql.ai108.groupeRMR.model.InternDao;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -14,7 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
-public class FormPannelAdmin extends GridPane {
+public class OldFormPannelAdmin extends GridPane {
 	
 	private Label lblLastName;
 	private TextField txtLastName;
@@ -36,7 +41,7 @@ public class FormPannelAdmin extends GridPane {
 	private HBox btnExportBox;
 	private HBox btnAdminBox;
 	
-	public FormPannelAdmin() {
+	public OldFormPannelAdmin() {
 		super();
 		
 		
@@ -73,7 +78,7 @@ public class FormPannelAdmin extends GridPane {
 		
 		lblYear = new Label("Année");
 		txtYear  = new TextField();
-		addRow(4, lblYear,txtYear);		
+		addRow(4, lblYear,txtYear);	
 		
 		btnSearch = new Button("Rechercher");
 		btnSearch.setPrefSize(250, 100);	
@@ -82,15 +87,11 @@ public class FormPannelAdmin extends GridPane {
 
 			@Override
 			public void handle(ActionEvent event) {
-				String lastName = txtLastName.getText().toUpperCase();
-				String firstName = txtFirstName.getText();
-				String department = cbDepartment.getSelectionModel().getSelectedItem();
-				String promotion = txtPromotion.getText();
-				int year = Integer.parseInt(txtYear.getText());
-				Intern intern = new Intern(lastName, firstName, department, promotion, year);
+				SearchByWord.InternTableController();
 				
 			}
 		});
+
 		
 		
 		btnAdd = new Button("Ajouter un stagiaire");
@@ -108,7 +109,8 @@ public class FormPannelAdmin extends GridPane {
 				Intern intern = new Intern(lastName, firstName, department, promotion, year);
 				
 				AdminPane adminPane = (AdminPane) getScene().getRoot();
-				adminPane.getTablePannel().getObservableInterns().add(intern);
+				adminPane.getTablePannel();
+				TablePannel.getObservableInterns().add(intern);
 				
 			}
 		});
@@ -143,10 +145,12 @@ public class FormPannelAdmin extends GridPane {
 
 			@Override
 			public void handle(ActionEvent event) {
-				AdminPane adminPane = (AdminPane) FormPannelAdmin.this.getScene().getRoot();
-				TableView<Intern> intern = adminPane.getTablePannel().getTableView();
+				AdminPane adminPane = (AdminPane) OldFormPannelAdmin.this.getScene().getRoot();
+				adminPane.getTablePannel();
+				TableView<Intern> intern = TablePannel.getTableView();
 				Intern intern1 = intern.getSelectionModel().getSelectedItem();
-				adminPane.getTablePannel().getObservableInterns().remove(intern1);
+				adminPane.getTablePannel();
+				TablePannel.getObservableInterns().remove(intern1);
 				
 			}
 		});
@@ -319,6 +323,8 @@ public class FormPannelAdmin extends GridPane {
 	public void setBtnAdminBox(HBox btnAdminBox) {
 		this.btnAdminBox = btnAdminBox;
 	}
+	
+	
 	
 	
 	

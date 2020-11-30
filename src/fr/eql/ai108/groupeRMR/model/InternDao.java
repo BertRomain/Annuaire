@@ -94,7 +94,7 @@ public class InternDao {
 			b = new byte[lengthOfRecord];
 			raf.read(b);
 			line2 = new String(b);
-			System.out.println(line2);
+//			System.out.println(line2);
 			Intern intern2 = stringToIntern(line2);
 			interns.add(intern2);
 			index ++;
