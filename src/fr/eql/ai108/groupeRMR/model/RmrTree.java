@@ -31,21 +31,7 @@ public class RmrTree {
 		try {
 			raf = new RandomAccessFile(readingFile, "rw");
 
-
-
-//			internLine = readInternLine(raf, 0);
-//			System.out.println(internLine);
-//			writeInternLine(raf, internLine, 0);
-//			internLine = readInternLine(raf, 1);
-//			System.out.println(internLine);
-//			childLeftAdress = 
-//			readChildLeftAdress(raf, 0);
 			System.out.println(readChildLeftAdress(raf, 0));
-//			System.out.println("adress right " + readChildRightAdress(raf, 0));
-//			System.out.println(readInternLine(raf, 0));
-//			if (internLine.compareTo(readInternLine(raf, 0)) > 0) {
-//
-//			}
 
 
 		} catch (IOException e) {
