@@ -21,9 +21,10 @@ public class TablePannel extends AnchorPane {
 	public TablePannel() {
 		super();
 
-		observableInterns = FXCollections.observableArrayList(dao.getAll());
+		observableInterns = FXCollections.observableArrayList(dao.getAll2());
 		
 		tableView = new TableView<>(observableInterns);
+		
 		
 		TableColumn<Intern, String> colLastName = new TableColumn<>("Nom");
 		colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
@@ -41,7 +42,7 @@ public class TablePannel extends AnchorPane {
 		colYear.setCellValueFactory(new PropertyValueFactory<>("year"));
 		//colYear.setMaxWidth(50);
 		
-		tableView.getColumns().addAll(colLastName,colFirstName, colDepartment,colPromotion,colYear);		
+		tableView.getColumns().addAll(colLastName,colFirstName,colDepartment,colPromotion,colYear);		
 		tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		getChildren().add(tableView);
 		

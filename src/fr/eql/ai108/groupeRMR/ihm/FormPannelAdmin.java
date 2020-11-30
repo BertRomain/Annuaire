@@ -83,11 +83,11 @@ public class FormPannelAdmin extends GridPane {
 			@Override
 			public void handle(ActionEvent event) {
 				String lastName = txtLastName.getText().toUpperCase();
-				String fisrtName = txtFirstName.getText();
+				String firstName = txtFirstName.getText();
 				String department = cbDepartment.getSelectionModel().getSelectedItem();
 				String promotion = txtPromotion.getText();
 				int year = Integer.parseInt(txtYear.getText());
-				Intern intern = new Intern(lastName, fisrtName, department, promotion, year);
+				Intern intern = new Intern(lastName, firstName, department, promotion, year);
 				
 			}
 		});
@@ -101,11 +101,11 @@ public class FormPannelAdmin extends GridPane {
 			@Override
 			public void handle(ActionEvent event) {
 				String lastName = txtLastName.getText().toUpperCase();
-				String fisrtName = txtFirstName.getText();
+				String firstName = txtFirstName.getText();
 				String department = cbDepartment.getSelectionModel().getSelectedItem();
 				String promotion = txtPromotion.getText();
 				int year = Integer.parseInt(txtYear.getText());
-				Intern intern = new Intern(lastName, fisrtName, department, promotion, year);
+				Intern intern = new Intern(lastName, firstName, department, promotion, year);
 				
 				AdminPane adminPane = (AdminPane) getScene().getRoot();
 				adminPane.getTablePannel().getObservableInterns().add(intern);
@@ -147,6 +147,8 @@ public class FormPannelAdmin extends GridPane {
 		
 		btnRefresh = new Button("Mettre à jour");
 		btnRefresh.setPrefSize(250, 100);
+		
+		
 		btnAdminBox = new HBox(50);
 		btnAdminBox.getChildren().addAll(btnDelete,btnRefresh);
 		btnAdminBox.setAlignment(Pos.CENTER);
