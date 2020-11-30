@@ -1,12 +1,12 @@
 package fr.eql.ai108.groupeRMR.ihm;
 
+import fr.eql.ai108.groupeRMR.model.ExportPdf;
 import fr.eql.ai108.groupeRMR.model.Intern;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
@@ -128,6 +128,13 @@ public class FormPannelAdmin extends GridPane {
 		btnExportBox.getChildren().addAll(btnSelectionExport,btnFullExport);
 		btnExportBox.setAlignment(Pos.CENTER);
 		add(btnExportBox, 0, 11, 2, 1);
+		btnFullExport.setOnAction(e -> {
+			try {
+				ExportPdf.toFile(TablePannel.tableView, "c:/DossierAI108/output.pdf");
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		});
 		
 		btnDelete = new Button("Supprimer un stagiaire");
 		btnDelete.setPrefSize(250, 100);
