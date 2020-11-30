@@ -82,21 +82,22 @@ public class InternDao {
 		List<Intern> interns = new ArrayList<Intern>();
 		RandomAccessFile raf = null;
 		index = 0;
-		byte[] c = new byte[entireLengthOfRecord];
+
 		try {
 			raf = new RandomAccessFile(file, "rw");
-			while(raf.read(c) != -1);{
+			int numberOfInterns = (int) (raf.length() / 278);
+			
+			while(index < numberOfInterns){
 			byte[] b = null;	
 			String line2 = "";
 			raf.seek(index * entireLengthOfRecord);
-			 b = new byte[lengthOfRecord];
+			b = new byte[lengthOfRecord];
 			raf.read(b);
 			line2 = new String(b);
 			System.out.println(line2);
 			Intern intern2 = stringToIntern(line2);
 			interns.add(intern2);
 			index ++;
-//			}while(index < 1314);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
