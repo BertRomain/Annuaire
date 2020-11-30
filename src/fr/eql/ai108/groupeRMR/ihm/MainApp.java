@@ -2,6 +2,7 @@ package fr.eql.ai108.groupeRMR.ihm;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class MainApp extends Application {
@@ -20,7 +21,7 @@ public class MainApp extends Application {
 				.toExternalForm());
 		stage.setTitle("ANNUAIRE EQL");
 		stage.setScene(scene);
-		
+		stage.getIcons().add(new Image("icoEql.png"));
 		stage.show();
 
 		
