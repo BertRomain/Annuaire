@@ -24,16 +24,16 @@ public class ExportPdf {
 
 	public void export(TableView<?> tableView) throws Exception {
 		Page page = new Page(pdf, A4.PORTRAIT);
-		Font header = new Font(pdf, CoreFont.HELVETICA_BOLD);
-		header.setSize(7.0f);
-		Font content = new Font(pdf, CoreFont.HELVETICA);
-		content.setSize(7.0f);
+		Font header = new Font(pdf, CoreFont.TIMES_BOLD);
+		header.setSize(9.0f);
+		Font content = new Font(pdf, CoreFont.TIMES_ROMAN);
+		content.setSize(8.0f);
 		Table table = new Table();
 
 		List<List<Cell>> tableData = getData(tableView, header, content);
 		table.setData(tableData, Table.DATA_HAS_1_HEADER_ROWS);
 		table.setCellBordersWidth(0.2f);
-		table.setPosition(70.0f, 30.0f);
+		table.setPosition(110.0f, 30.0f);
 		table.autoAdjustColumnWidths();
 		table.rightAlignNumbers();
 		int numOfPages = table.getNumberOfPages(page);
