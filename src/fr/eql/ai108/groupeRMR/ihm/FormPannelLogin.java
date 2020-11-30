@@ -24,14 +24,17 @@ public class FormPannelLogin extends GridPane {
 	
 	public FormPannelLogin() {
 		
+		setStyle("-fx-background-color: rgb(183,204,229)");
 		lblLogin = new Label("LOGIN");
-		txtLogin = new TextField();
+		txtLogin = new TextField("ex : Thibaud");
 		txtLogin.setPrefSize(600, 20);
+		txtLogin.setStyle("-fx-font-style: italic");
 		addRow(0, lblLogin, txtLogin);
 		
 		lblPassword = new Label("PASSWORD");
 		txtPassword = new TextField();
 		txtPassword.setPrefSize(600, 20);
+		txtLogin.setStyle("-fx-font-style: italic");
 		addRow(1, lblPassword, txtPassword);
 		
 		btnValidate = new Button("VALIDER");
@@ -39,7 +42,6 @@ public class FormPannelLogin extends GridPane {
 		
 		setVgap(20);
 		setPadding(new Insets(20));
-		
 		btnValidate.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
