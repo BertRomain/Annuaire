@@ -1,7 +1,16 @@
 package fr.eql.ai108.groupeRMR.ihm;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.util.ArrayList;
+import java.util.List;
+
 import fr.eql.ai108.groupeRMR.model.ExportPdf;
 import fr.eql.ai108.groupeRMR.model.Intern;
+import fr.eql.ai108.groupeRMR.model.InternDao;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -26,6 +35,8 @@ public class FormPannelAdmin extends GridPane {
 	private TextField txtPromotion;
 	private Label lblYear;
 	private TextField txtYear;
+	private Label lblSearch;
+	private TextField txtSearch;
 	private Button btnSearch;
 	private Button btnAdd;
 	private Button btnFullExport;
@@ -74,7 +85,11 @@ public class FormPannelAdmin extends GridPane {
 		lblYear = new Label("Année");
 		txtYear  = new TextField();
 		addRow(4, lblYear,txtYear);		
-
+		
+		lblSearch = new Label("Rechercher un stagiaire par mot clé");
+		txtSearch = new TextField();
+		addRow(5, lblSearch, txtSearch);
+		
 		btnSearch = new Button("Rechercher");
 		btnSearch.setPrefSize(250, 100);	
 
@@ -82,14 +97,71 @@ public class FormPannelAdmin extends GridPane {
 
 			@Override
 			public void handle(ActionEvent event) {
-				String lastName = txtLastName.getText().toUpperCase();
-				String firstName = txtFirstName.getText();
-				String department = cbDepartment.getSelectionModel().getSelectedItem();
-				String promotion = txtPromotion.getText();
-				int year = Integer.parseInt(txtYear.getText());
-				Intern intern = new Intern(lastName, firstName, department, promotion, year);
+				RandomAccessFile raf = null;
+				int index = 0;
+				File file = InternDao.file;
+				int entireLengthOfRecord = InternDao.entireLengthOfRecord;
+				int lengthOfRecord = InternDao.lengthOfRecord;
+				//boolean found = false;
+				String strToFind = txtSearch.getText().toLowerCase();
+				String[] infos = strToFind.split(" ");
+				int found = 0;
+				
+				try {
+					raf = new RandomAccessFile(file, "rw");
+					int numberOfInterns = (int) (raf.length() / 278);
 
+					AdminPane adminPane = (AdminPane) FormPannelAdmin.this.getScene().getRoot();
+					TableView<Intern> intern = adminPane.getTablePannel().getTableView();
+
+					while(index < numberOfInterns){
+						found = 0;
+						byte[] b = null;	
+						String line2 = "";
+						raf.seek(index * entireLengthOfRecord);
+						b = new byte[lengthOfRecord];
+						raf.read(b);
+						line2 = new String(b);
+						Intern intern2 = stringToIntern(line2);	
+						adminPane.getTablePannel().getObservableInterns().remove(intern2);
+						index ++;
+					}
+					index =0;
+					while(index < numberOfInterns){
+					found = 0;
+					byte[] b = null;	
+					String line2 = "";
+					raf.seek(index * entireLengthOfRecord);
+					b = new byte[lengthOfRecord];
+					raf.read(b);
+					line2 = new String(b).toLowerCase();
+													
+					index ++;
+					
+					
+					for(int i =0 ; i< infos.length; i++) {
+						infos[i].trim().toLowerCase();
+						if(line2.contains(infos[i])) {
+//							TableView<Intern> intern = adminPane.getTablePannel().getTableView();
+							found ++;
+							
+						}
+						if(found == infos.length) {
+							Intern intern2 = stringToIntern(line2);
+							adminPane.getTablePannel().getObservableInterns().add(intern2);
+							}
+					
+					
+					}
+					}
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 			}
+			
+			
 		});
 
 
@@ -342,7 +414,13 @@ public class FormPannelAdmin extends GridPane {
 		this.btnAdminBox = btnAdminBox;
 	}
 
-
+	private static Intern stringToIntern (String line) {
+		
+		String[] infos = line.split(";");
+		Intern intern = new Intern(infos[0].trim().toUpperCase(),(infos[1].trim().substring(0, 1).toUpperCase() + infos[1].trim().substring(1).toLowerCase()),(infos[2].trim()),
+				infos[3].trim(),Integer.parseInt(infos[4].trim()));		
+		return intern;
+	}
 
 
 }

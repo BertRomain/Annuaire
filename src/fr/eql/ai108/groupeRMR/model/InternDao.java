@@ -14,7 +14,7 @@ import java.util.List;
 
 public class InternDao {
 	
-	private File file = new File("C:/Users/formation/Desktop/intern.bin");
+	public static File file = new File("C:/Users/formation/Desktop/intern.bin");
 	
 	
 	private static Intern stringToIntern (String line) {
@@ -72,8 +72,8 @@ public class InternDao {
 //		
 //	}
 	static int index = 0;
-	static int lengthOfRecord = 260;
-	static int entireLengthOfRecord = 278;
+	public static int lengthOfRecord = 260;
+	public static int entireLengthOfRecord = 278;
 	static long  offset = 0;
 	
 	 
@@ -95,7 +95,7 @@ public class InternDao {
 			b = new byte[lengthOfRecord];
 			raf.read(b);
 			line2 = new String(b);
-			System.out.println(line2);
+			//System.out.println(line2);
 			Intern intern2 = stringToIntern(line2);
 			interns.add(intern2);
 			index ++;
