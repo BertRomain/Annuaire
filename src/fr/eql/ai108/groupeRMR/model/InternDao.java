@@ -71,8 +71,8 @@ public class InternDao {
 //		
 //	}
 	static int index = 0;
-	static int lengthOfRecord = 260;
-	static int entireLengthOfRecord = 278;
+	public static int lengthOfRecord = 260;
+	public static int entireLengthOfRecord = 278;
 	static long  offset = 0;
 	
 	 

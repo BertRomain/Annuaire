@@ -8,7 +8,7 @@ import javafx.scene.layout.BorderPane;
 public class AdminPane extends BorderPane {
 	
 	private TablePannel tablePannel = new TablePannel();
-	private OldFormPannelAdmin formPannel = new OldFormPannelAdmin();
+	private FormPannelAdmin formPannel = new FormPannelAdmin();
 	private Label titleAdmin = new Label("	ANNUAIRE EQL Page Admin");
 	
 	public AdminPane() {
@@ -27,11 +27,16 @@ public class AdminPane extends BorderPane {
 
 	public void setTablePannel(TablePannel tablePannel) {
 		this.tablePannel = tablePannel;
-	public OldFormPannelAdmin getFormPannel() {
+	}
+	
+	public FormPannelAdmin getFormPannel() {
 
 		return formPannel;
-		public void setFormPannel(OldFormPannelAdmin formPannel) {
-) {
+		
+	}
+	
+		public void setFormPannel(FormPannelAdmin formPannel) {
+ 
 		this.formPannel = formPannel;
 	}
 	
