@@ -10,6 +10,7 @@ import java.util.List;
 import fr.eql.ai108.groupeRMR.model.ExportPdf;
 import fr.eql.ai108.groupeRMR.model.Intern;
 import fr.eql.ai108.groupeRMR.model.InternDao;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -110,22 +111,29 @@ public class FormPannelAdmin extends GridPane {
 				try {
 					raf = new RandomAccessFile(file, "rw");
 					int numberOfInterns = (int) (raf.length() / 278);
-
+//					InternDao dao = new InternDao();
+//					ObservableList<Intern> observableInterns;
+					TableView<Intern> tableView = TablePannel.tableView;
 					AdminPane adminPane = (AdminPane) FormPannelAdmin.this.getScene().getRoot();
-					TableView<Intern> intern = adminPane.getTablePannel().getTableView();
+//					TableView<Intern> intern = adminPane.getTablePannel().getTableView();
+//					observableInterns = FXCollections.observableArrayList(dao.getAll2());
+					
+					//tableView = new TableView<>(observableInterns);
 
-					while(index < numberOfInterns){
-						found = 0;
-						byte[] b = null;	
-						String line2 = "";
-						raf.seek(index * entireLengthOfRecord);
-						b = new byte[lengthOfRecord];
-						raf.read(b);
-						line2 = new String(b);
-						Intern intern2 = stringToIntern(line2);	
-						adminPane.getTablePannel().getObservableInterns().remove(intern2);
-						index ++;
-					}
+//					while(index < numberOfInterns){
+//						found = 0;
+//						byte[] b = null;	
+//						String line2 = "";
+//						raf.seek(index * entireLengthOfRecord);
+//						b = new byte[lengthOfRecord];
+//						raf.read(b);
+//						line2 = new String(b);
+//						Intern intern2 = stringToIntern(line2);	
+//						adminPane.getTablePannel().getObservableInterns().remove(intern2);
+//						index ++;
+//					}
+					tableView.getItems().clear();
+					
 					index =0;
 					while(index < numberOfInterns){
 					found = 0;
@@ -146,7 +154,7 @@ public class FormPannelAdmin extends GridPane {
 							found ++;
 							
 						}
-						if(found == infos.length) {
+						if(found == infos.length && found > 0) {
 							Intern intern2 = stringToIntern(line2);
 							adminPane.getTablePannel().getObservableInterns().add(intern2);
 							}
