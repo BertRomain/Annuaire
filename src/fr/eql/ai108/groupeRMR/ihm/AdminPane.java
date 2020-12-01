@@ -1,6 +1,9 @@
 package fr.eql.ai108.groupeRMR.ihm;
 
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 
@@ -18,8 +21,9 @@ public class AdminPane extends BorderPane {
 		setLeft(formPannel);	
 		setCenter(tablePannel);
 		setPrefSize(1919, 1008);
-		
-	}
+		formPannel.setStyle("-fx-background-color: rgb(183,204,229)");
+		tablePannel.setStyle("-fx-background-color: rgb(183,204,229)");
+		}
 
 	public TablePannel getTablePannel() {
 		return tablePannel;

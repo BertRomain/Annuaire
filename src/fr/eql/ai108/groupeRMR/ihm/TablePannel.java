@@ -13,8 +13,8 @@ import javafx.scene.layout.AnchorPane;
 
 public class TablePannel extends AnchorPane {
 	
-	private InternDao dao = new InternDao();
-	private ObservableList<Intern> observableInterns;
+	public static InternDao dao = new InternDao();
+	public static ObservableList<Intern> observableInterns;
 	public static TableView<Intern> tableView;
 	
 	@SuppressWarnings("unchecked")

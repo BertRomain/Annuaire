@@ -16,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -23,6 +24,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
 public class FormPannelAdmin extends GridPane {
 
@@ -47,6 +49,8 @@ public class FormPannelAdmin extends GridPane {
 	private HBox btnUserBox;
 	private HBox btnExportBox;
 	private HBox btnAdminBox;
+	private Button btnReturn;
+	private HBox btnReturnWelcome;
 
 	public FormPannelAdmin() {
 		super();
@@ -73,11 +77,11 @@ public class FormPannelAdmin extends GridPane {
 				"70","71","72","73","74","75","76","77","78","79",
 				"80","81","82","83","84","85","86","87","88","89",
 				"90","91","92","93","94","95",
-				"971","972","973","974","976");
+				"971","972","973","974","976", "Autre");
 		addRow(2, lblDepartment,cbDepartment);
 		cbDepartment.setVisibleRowCount(10);
 		cbDepartment.getSelectionModel().select(0);;
-		//cbDepartment.setStyle("-fx-background-color: grey");
+		//cbDepartment.setId(".background");
 
 		lblPromotion = new Label ("Promotion");
 		txtPromotion = new TextField ();
@@ -91,9 +95,31 @@ public class FormPannelAdmin extends GridPane {
 		txtSearch = new TextField();
 		addRow(5, lblSearch, txtSearch);
 		
+		
 		btnSearch = new Button("Rechercher");
-		btnSearch.setPrefSize(250, 100);	
+		btnSearch.setPrefSize(270, 100);	
+		
+		btnReturn = new Button("Retour à l'accueil");
+		btnReturn.setPrefSize(590, 100);
+		btnReturnWelcome = new HBox(50);
+		btnReturnWelcome.getChildren().add(btnReturn);
+		btnReturnWelcome.setAlignment(Pos.CENTER);
+		add(btnReturnWelcome, 0, 13, 2, 1);
 
+		btnReturn.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				FirstPaneWelcome root = new FirstPaneWelcome();
+				Scene scene = new Scene(root);	
+				scene.getStylesheets().add(getClass().getResource("./RMRstylesheet.css")
+						.toExternalForm());
+				Stage stage = (Stage) getScene().getWindow();
+				stage.setScene(scene);
+				
+			}
+		});
+		
 		btnSearch.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -111,27 +137,10 @@ public class FormPannelAdmin extends GridPane {
 				try {
 					raf = new RandomAccessFile(file, "rw");
 					int numberOfInterns = (int) (raf.length() / 278);
-//					InternDao dao = new InternDao();
-//					ObservableList<Intern> observableInterns;
+
 					TableView<Intern> tableView = TablePannel.tableView;
 					AdminPane adminPane = (AdminPane) FormPannelAdmin.this.getScene().getRoot();
-//					TableView<Intern> intern = adminPane.getTablePannel().getTableView();
-//					observableInterns = FXCollections.observableArrayList(dao.getAll2());
-					
-					//tableView = new TableView<>(observableInterns);
 
-//					while(index < numberOfInterns){
-//						found = 0;
-//						byte[] b = null;	
-//						String line2 = "";
-//						raf.seek(index * entireLengthOfRecord);
-//						b = new byte[lengthOfRecord];
-//						raf.read(b);
-//						line2 = new String(b);
-//						Intern intern2 = stringToIntern(line2);	
-//						adminPane.getTablePannel().getObservableInterns().remove(intern2);
-//						index ++;
-//					}
 					tableView.getItems().clear();
 					
 					index =0;
@@ -150,7 +159,6 @@ public class FormPannelAdmin extends GridPane {
 					for(int i =0 ; i< infos.length; i++) {
 						infos[i].trim().toLowerCase();
 						if(line2.contains(infos[i])) {
-//							TableView<Intern> intern = adminPane.getTablePannel().getTableView();
 							found ++;
 							
 						}
@@ -159,22 +167,19 @@ public class FormPannelAdmin extends GridPane {
 							adminPane.getTablePannel().getObservableInterns().add(intern2);
 							}
 					
-					
 					}
 					}
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
 			}
-			
 			
 		});
 
 
 		btnAdd = new Button("Ajouter un stagiaire");
-		btnAdd.setPrefSize(250, 100);
+		btnAdd.setPrefSize(270, 100);
 
 		btnAdd.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -199,25 +204,63 @@ public class FormPannelAdmin extends GridPane {
 		btnUserBox.setAlignment(Pos.CENTER);
 		add(btnUserBox, 0, 10, 2, 1);
 
-		btnFullExport = new Button("Exporter Annuaire" + 
-				"\n" +"(entier en Pdf)");
-		btnFullExport.setPrefSize(250, 100);
-		btnSelectionExport = new Button("Exporter Annuaire "+ "\n" +"(extrait en Pdf)");
-		btnSelectionExport.setPrefSize(250, 100);
+		btnFullExport = new Button("Exporter annuaire entier\r             (en PDF) ");
+		btnFullExport.setPrefSize(270, 100);
+	
+		btnSelectionExport = new Button("Exporter extrait annuaire\r           (en PDF)");
+		btnSelectionExport.setPrefSize(270, 100);
 		btnExportBox = new HBox(50);
 		btnExportBox.getChildren().addAll(btnSelectionExport,btnFullExport);
 		btnExportBox.setAlignment(Pos.CENTER);
-		add(btnExportBox, 0, 11, 2, 1);
-		btnFullExport.setOnAction(e -> {
+		
+		add(btnExportBox, 0, 12, 2, 1);
+		btnSelectionExport.setOnAction(e -> {
 			try {
-				ExportPdf.toFile(TablePannel.tableView, "c:/DossierAI108/output.pdf");
+				String export = txtSearch.getText().toString();
+				ExportPdf.toFile(TablePannel.tableView, "c:/DossierAI108/annuaire_exporté_extrait_"+ export + ".pdf");
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
 		});
+		btnFullExport.setOnAction(e -> {
+			RandomAccessFile raf = null;
+			int index = 0;
+			File file = InternDao.file;
+			int entireLengthOfRecord = InternDao.entireLengthOfRecord;
+			int lengthOfRecord = InternDao.lengthOfRecord;
+			TableView<Intern> tableView = TablePannel.tableView;
+			tableView.getItems().clear();
+			
+			try {
+				raf = new RandomAccessFile(file, "rw");
+				int numberOfInterns = (int) (raf.length() / 278);
+				index =0;
+				while(index < numberOfInterns){
+				byte[] b = null;	
+				String line2 = "";
+				raf.seek(index * entireLengthOfRecord);
+				b = new byte[lengthOfRecord];
+				raf.read(b);
+				line2 = new String(b);
+				Intern intern2 = stringToIntern(line2);		
+				AdminPane adminPane = (AdminPane) FormPannelAdmin.this.getScene().getRoot();
+				adminPane.getTablePannel().getObservableInterns().add(intern2);
+				index ++;
+				}
+				ExportPdf.toFile(TablePannel.tableView, "c:/DossierAI108/annuaire_exporté_entier.pdf");
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+	});
+	
 
 		btnDelete = new Button("Supprimer un stagiaire");
-		btnDelete.setPrefSize(250, 100);
+		btnDelete.setPrefSize(270, 100);
 
 		btnDelete.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -232,8 +275,8 @@ public class FormPannelAdmin extends GridPane {
 		});
 
 
-		btnRefresh = new Button("Mettre à jour");
-		btnRefresh.setPrefSize(250, 100);
+		btnRefresh = new Button("Mettre à jour \r un stagiaire");
+		btnRefresh.setPrefSize(270, 100);
 
 
 		btnAdminBox = new HBox(50);
@@ -264,7 +307,7 @@ public class FormPannelAdmin extends GridPane {
 
 
 
-		add(btnAdminBox, 0, 12, 2, 1);
+		add(btnAdminBox, 0, 11, 2, 1);
 		setVgap(20);
 		setPadding(new Insets(20));
 
@@ -292,6 +335,38 @@ public class FormPannelAdmin extends GridPane {
 
 	public void setLblFirstName(Label lblFirstName) {
 		this.lblFirstName = lblFirstName;
+	}
+
+	public Label getLblSearch() {
+		return lblSearch;
+	}
+
+	public void setLblSearch(Label lblSearch) {
+		this.lblSearch = lblSearch;
+	}
+
+	public TextField getTxtSearch() {
+		return txtSearch;
+	}
+
+	public void setTxtSearch(TextField txtSearch) {
+		this.txtSearch = txtSearch;
+	}
+
+	public Button getBtnReturn() {
+		return btnReturn;
+	}
+
+	public void setBtnReturn(Button btnReturn) {
+		this.btnReturn = btnReturn;
+	}
+
+	public HBox getBtnReturnWelcome() {
+		return btnReturnWelcome;
+	}
+
+	public void setBtnReturnWelcome(HBox btnReturnWelcome) {
+		this.btnReturnWelcome = btnReturnWelcome;
 	}
 
 	public TextField getTxtFirstName() {

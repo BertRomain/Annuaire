@@ -3,6 +3,7 @@ package fr.eql.ai108.groupeRMR.ihm;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -40,8 +41,10 @@ public class FormPannelLogin extends GridPane {
 		btnValidate = new Button("VALIDER");
 		addRow(2, btnValidate);
 		
-		setVgap(20);
+		
+		setVgap(30);
 		setPadding(new Insets(20));
+		setAlignment(Pos.CENTER);
 		btnValidate.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override

@@ -22,7 +22,7 @@ public class FirstPaneWelcome extends BorderPane {
 		setBottom(hBoxAdminAccessBtn);		
 		setPrefSize(1919, 1008);
 		setStyle("-fx-background-color: rgb(183,204,229)");
-
+btnWelcome.setId(".button");
 		btnWelcome.setOnAction(new EventHandler<ActionEvent>() {			
 			@Override
 			public void handle(ActionEvent event) {
