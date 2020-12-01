@@ -32,9 +32,9 @@ public class FormPannelLogin extends GridPane {
 		addRow(0, lblLogin, txtLogin);
 		
 		lblPassword = new Label("PASSWORD");
-		txtPassword = new TextField();
+		txtPassword = new TextField("ex : 123456");
 		txtPassword.setPrefSize(600, 20);
-		txtLogin.setStyle("-fx-font-style: italic");
+		txtPassword.setStyle("-fx-font-style: italic");
 		addRow(1, lblPassword, txtPassword);
 		
 		btnValidate = new Button("VALIDER");

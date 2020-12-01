@@ -71,7 +71,7 @@ public class ExportPdf {
 	}
 	public static void main(String[] args) {
 		try {
-			
+			//TO DO etudier un prompt 
 		    ExportPdf.toFile(TablePannel.tableView, "c:/DossierAI108/output.pdf");
 		} catch (Exception ex) {
 		    // handle Exception
