@@ -58,7 +58,7 @@ public class TablePannel extends AnchorPane {
 			@Override
 			public void changed(ObservableValue<? extends Intern> observable, Intern oldValue, Intern newValue) {
 				AdminPane root = (AdminPane) TablePannel.this.getScene().getRoot();
-				OldFormPannelAdmin formPannelAdmin = root.getFormPannel();
+				FormPannelAdmin formPannelAdmin = root.getFormPannel();
 				if(newValue != null) {
 					formPannelAdmin.getTxtLastName().setText(newValue.getLastName());
 					formPannelAdmin.getTxtFirstName().setText(newValue.getFirstName());

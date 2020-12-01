@@ -27,13 +27,11 @@ public class AdminPane extends BorderPane {
 
 	public void setTablePannel(TablePannel tablePannel) {
 		this.tablePannel = tablePannel;
-	}
-
 	public OldFormPannelAdmin getFormPannel() {
-		return formPannel;
-	}
 
-	public void setFormPannel(OldFormPannelAdmin formPannel) {
+		return formPannel;
+		public void setFormPannel(OldFormPannelAdmin formPannel) {
+) {
 		this.formPannel = formPannel;
 	}
 	

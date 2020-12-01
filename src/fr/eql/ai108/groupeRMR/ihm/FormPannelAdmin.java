@@ -26,6 +26,8 @@ public class FormPannelAdmin extends GridPane {
 	private TextField txtPromotion;
 	private Label lblYear;
 	private TextField txtYear;
+	private Label lblSearch;
+	public static TextField txtSearch;
 	private Button btnSearch;
 	private Button btnAdd;
 	private Button btnFullExport;
@@ -74,6 +76,10 @@ public class FormPannelAdmin extends GridPane {
 		lblYear = new Label("Année");
 		txtYear  = new TextField();
 		addRow(4, lblYear,txtYear);		
+		
+		lblSearch = new Label("Rechercher un stagiaire \r par mot clé");
+		txtSearch = new TextField();
+		addRow(5, lblSearch, txtSearch);
 
 		btnSearch = new Button("Rechercher");
 		btnSearch.setPrefSize(250, 100);	
@@ -82,15 +88,24 @@ public class FormPannelAdmin extends GridPane {
 
 			@Override
 			public void handle(ActionEvent event) {
-				String lastName = txtLastName.getText().toUpperCase();
-				String firstName = txtFirstName.getText();
-				String department = cbDepartment.getSelectionModel().getSelectedItem();
-				String promotion = txtPromotion.getText();
-				int year = Integer.parseInt(txtYear.getText());
-				Intern intern = new Intern(lastName, firstName, department, promotion, year);
-
+				Events.rechercher();
+				
 			}
 		});
+		
+//		btnSearch.setOnAction(new EventHandler<ActionEvent>() {
+//
+//			@Override
+//			public void handle(ActionEvent event) {
+//				String lastName = txtLastName.getText().toUpperCase();
+//				String firstName = txtFirstName.getText();
+//				String department = cbDepartment.getSelectionModel().getSelectedItem();
+//				String promotion = txtPromotion.getText();
+//				int year = Integer.parseInt(txtYear.getText());
+//				Intern intern = new Intern(lastName, firstName, department, promotion, year);
+//
+//			}
+//		});
 
 
 		btnAdd = new Button("Ajouter un stagiaire");
@@ -188,6 +203,22 @@ public class FormPannelAdmin extends GridPane {
 		setVgap(20);
 		setPadding(new Insets(20));
 
+	}
+
+	public Label getLblSearch() {
+		return lblSearch;
+	}
+
+	public void setLblSearch(Label lblSearch) {
+		this.lblSearch = lblSearch;
+	}
+
+	public static TextField getTxtSearch() {
+		return txtSearch;
+	}
+
+	public void setTxtSearch(TextField txtSearch) {
+		this.txtSearch = txtSearch;
 	}
 
 	public Label getLblLastName() {

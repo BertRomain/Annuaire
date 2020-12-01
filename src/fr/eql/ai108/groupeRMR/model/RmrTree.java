@@ -48,6 +48,15 @@ public class RmrTree {
 //			}
 
 
+			System.out.println(readChildLeftAdress(raf, 0));
+
+
+			System.out.println(readChildLeftAdress(raf, 0));
+
+
+			System.out.println(readChildLeftAdress(raf, 0));
+
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
