@@ -17,8 +17,8 @@ import fr.eql.ai108.groupeRMR.Import.ImportFileToBinary;
 
 public class RmrTreeRmr {
 	private static String internLine;
-	//private static String childLeftAdress;
-	private static String childRightAdress;
+	private static long childLeftAdress;
+	private static long childRightAdress;
 	private static int nbOcc = 1;
 	private static int lengthOfRecord = ImportFileToBinary.getLengthOfRecords();
 	private static int index;
@@ -36,11 +36,26 @@ public class RmrTreeRmr {
 		
 
 		try {
-			
 			raf = new RandomAccessFile(file, "rw");
-			String internString = "";
-			internString = readInternLine(raf, (long) 3);			
-			insertAdress(raf, internString, (long) 2);
+			raf.seek(0);
+//			raf.seek(278);
+//			long position = raf.getFilePointer();
+//			System.out.println("valeur position    " + position);
+//			raf.seek(260);
+//			raf.writeLong(position);
+//			raf.seek(260);
+//			long positionLue;
+//			positionLue = raf.readLong();
+//			System.out.println("position lue du fichier de persistance " + positionLue);
+//			long sizeFile = raf.length();
+//			raf.seek(278);
+//			raf.writeLong(sizeFile);
+//			raf.seek(278);
+//			long sizeLue = raf.readLong();
+//			System.out.println(sizeLue + "     " +  sizeFile);
+			
+			insertAdress(raf, readInternLine(raf, 1),0);
+			
 
 
 		} catch (IOException e) {
@@ -49,32 +64,59 @@ public class RmrTreeRmr {
 		}
 	}
 
-	public static void insertAdress(RandomAccessFile raf, String internString, Long position) throws IOException {
-		String childLeftAdress = "";
-		long childLeftAdressLong;
-		if((internString.compareTo(readInternLine(raf, position)) < 0)) {
-			childLeftAdressLong = position + 278;
-			childLeftAdress = String.valueOf(childLeftAdressLong);
-			raf.seek(raf.length()-18);
-			raf.writeBytes(childLeftAdress);
+	public static void insertAdress(RandomAccessFile raf, String newString, int n) throws IOException {
+		
+		long positionNewString = raf.length();
+		long positionOldString = 278 * n + 278;
+		raf.seek(0);
+		long childLeftAdress;
+		long childRightAdress;
+		if((newString.compareTo(readInternLine(raf, n)) < 0)) {
+			raf.seek(positionOldString-18);
+			byte [] b = new byte [1];
+			raf.read(b);
+			String bString = new String(b);
 			
+			if (bString.equals("0")) {
+			childLeftAdress = positionNewString;
+			raf.seek(positionOldString-18);
+			raf.writeLong(childLeftAdress);
+			raf.seek(positionOldString-18);
+			long verif =raf.readLong();
+			raf.seek(positionOldString-18);
+			System.out.println( "gauche" + verif);
+			}else{
+				raf.seek(positionOldString-18);
+				insertAdress(raf, newString, n);
+			}
+
+		}else if((newString.compareTo(readInternLine(raf, n)) > 0)) {
+			childRightAdress = positionNewString;
+			raf.seek(positionOldString-9);
+			raf.writeLong(childRightAdress);
+			raf.seek(positionOldString-9);
+			long verif =raf.readLong();
+			raf.seek(positionOldString-9);
+			System.out.println(raf.readLong() + " droite  " +  verif);
 		}
+		System.out.println("Fin méthode Insert Adress");
 
 	}
 
-	public static String readInternLine(RandomAccessFile raf, Long index) {
-		int size = lengthOfRecord;
+	public static String readInternLine(RandomAccessFile raf, int o) {
+		
 		String internLine = "";
-		long offset = size * index;	
+		long positionOldString = 278 * o + 278;
 		try {	
-			raf.seek(offset);
-			byte [] tabBytes = new byte [size];
+			raf.seek(positionOldString-278);
+			byte [] tabBytes = new byte [278];
 			raf.read(tabBytes);
 			internLine = new  String(tabBytes);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println("retour ReadInternLine  "  + internLine);
 		return internLine;
 	}
 
