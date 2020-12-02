@@ -46,11 +46,13 @@ public class FormPannelAdmin extends GridPane {
 	private Button btnSelectionExport;
 	private Button btnRefresh;
 	private Button btnDelete;
+	private Button btnReturn;
+	private Button btnDoc;
 	private HBox btnUserBox;
 	private HBox btnExportBox;
 	private HBox btnAdminBox;
-	private Button btnReturn;
-	private HBox btnReturnWelcome;
+	private HBox btnReturnWelcomeBox;
+	private HBox btnDocBox;
 
 	public FormPannelAdmin() {
 		super();
@@ -101,10 +103,17 @@ public class FormPannelAdmin extends GridPane {
 		
 		btnReturn = new Button("Retour à l'accueil");
 		btnReturn.setPrefSize(590, 100);
-		btnReturnWelcome = new HBox(50);
-		btnReturnWelcome.getChildren().add(btnReturn);
-		btnReturnWelcome.setAlignment(Pos.CENTER);
-		add(btnReturnWelcome, 0, 13, 2, 1);
+		btnReturnWelcomeBox = new HBox(50);
+		btnReturnWelcomeBox.getChildren().add(btnReturn);
+		btnReturnWelcomeBox.setAlignment(Pos.CENTER);
+		add(btnReturnWelcomeBox, 0, 13, 2, 1);
+		
+		btnDoc = new Button("Générer fichier 'Documentation utilisateur'");
+		btnDoc.setPrefSize(590, 100);
+		btnDocBox = new HBox(50);
+		btnDocBox.getChildren().add(btnDoc);
+		btnDocBox.setAlignment(Pos.CENTER);
+		add(btnDocBox, 0, 14, 2, 1);
 
 		btnReturn.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -362,11 +371,11 @@ public class FormPannelAdmin extends GridPane {
 	}
 
 	public HBox getBtnReturnWelcome() {
-		return btnReturnWelcome;
+		return btnReturnWelcomeBox;
 	}
 
 	public void setBtnReturnWelcome(HBox btnReturnWelcome) {
-		this.btnReturnWelcome = btnReturnWelcome;
+		this.btnReturnWelcomeBox = btnReturnWelcome;
 	}
 
 	public TextField getTxtFirstName() {

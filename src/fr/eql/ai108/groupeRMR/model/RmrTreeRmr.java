@@ -1,6 +1,7 @@
 package fr.eql.ai108.groupeRMR.model;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.charset.StandardCharsets;
@@ -28,16 +29,21 @@ public class RmrTreeRmr {
 			- ImportFileToBinary.getChildRightLengh() - 2; // 2 = quantity of ";" to erase
 	private static int lineLengthBeforeChildRight = ImportFileToBinary.getLengthOfRecords() 
 			- ImportFileToBinary.getChildRightLengh() - 1 ; // 1 = quantity of ";" to erase
-	private static String file = "C:/Users/formation/Desktop/internTest.bin";
-	//	private static String writingFile = "C:/Users/formation/Desktop/internTree.bin";
-
+	private static String file = "C:/Users/formation/Desktop/intern.bin"; //raf qui lit
+		private static String writingFile = "C:/Users/formation/Desktop/internTree.bin"; // raf1 qui écrit
+private static int nbOfInterns = 0;
+		
+		
 	public static void main(String[] args) {
 		RandomAccessFile raf;
-		
+		RandomAccessFile raf1;
+
 
 		try {
-			raf = new RandomAccessFile(file, "rw");
+			raf = new RandomAccessFile(file, "rw"); //fichier intern
 			raf.seek(0);
+			raf1 = new RandomAccessFile(writingFile, "rw"); //fichier tree
+			raf1.seek(0);
 //			raf.seek(278);
 //			long position = raf.getFilePointer();
 //			System.out.println("valeur position    " + position);
@@ -54,50 +60,77 @@ public class RmrTreeRmr {
 //			long sizeLue = raf.readLong();
 //			System.out.println(sizeLue + "     " +  sizeFile);
 			
-			insertAdress(raf, readInternLine(raf, 1),0);
+			
+			while(raf.read() < raf.length()) {
+			raf.seek(278*nbOfInterns);
+				 byte[] b = new byte[278];
+			raf.read(b);
+			nbOfInterns ++;
+			long end = raf1.length();
+			raf1.seek(end);
+			raf1.write(b);
+			insertAdress(raf1, readInternLine(raf, nbOfInterns),0);
 			
 
-
+			}
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	public static void insertAdress(RandomAccessFile raf, String newString, int n) throws IOException {
+
+
+	public static void insertAdress(RandomAccessFile raf1, String newString, int n) throws IOException {
 		
-		long positionNewString = raf.length();
+		long positionNewString = raf1.length();
 		long positionOldString = 278 * n + 278;
-		raf.seek(0);
+		//raf.seek(0);
 		long childLeftAdress;
 		long childRightAdress;
-		if((newString.compareTo(readInternLine(raf, n)) < 0)) {
-			raf.seek(positionOldString-18);
+		if((newString.compareTo(readInternLine(raf1, n)) < 0)) { //fer vs lep
+			raf1.seek(positionOldString-18);
 			byte [] b = new byte [1];
-			raf.read(b);
+			raf1.read(b);
 			String bString = new String(b);
 			
 			if (bString.equals("0")) {
 			childLeftAdress = positionNewString;
-			raf.seek(positionOldString-18);
-			raf.writeLong(childLeftAdress);
-			raf.seek(positionOldString-18);
-			long verif =raf.readLong();
-			raf.seek(positionOldString-18);
-			System.out.println( "gauche" + verif);
+			raf1.seek(positionOldString-18);
+			raf1.writeLong(childLeftAdress);
+			raf1.seek(positionOldString-18);
+			long verif =raf1.readLong();
+			raf1.seek(positionOldString-18);
+			System.out.println( raf1.readLong() + "gauche" + verif);
 			}else{
-				raf.seek(positionOldString-18);
-				insertAdress(raf, newString, n);
+				raf1.seek(positionOldString-18);
+				long pos = raf1.readLong() ;
+				raf1.seek(pos);
+				n ++;
+				insertAdress(raf1, readInternLineInternTree(raf1,pos), n);
 			}
 
-		}else if((newString.compareTo(readInternLine(raf, n)) > 0)) {
+		}else if((newString.compareTo(readInternLine(raf1, n)) > 0)) {
+			raf1.seek(positionOldString-9);
+			byte [] b = new byte [1];
+			raf1.read(b);
+			String bString = new String(b);
+			
+			if (bString.equals("0")) {
 			childRightAdress = positionNewString;
-			raf.seek(positionOldString-9);
-			raf.writeLong(childRightAdress);
-			raf.seek(positionOldString-9);
-			long verif =raf.readLong();
-			raf.seek(positionOldString-9);
-			System.out.println(raf.readLong() + " droite  " +  verif);
+			raf1.seek(positionOldString-9);
+			raf1.writeLong(childRightAdress);
+			raf1.seek(positionOldString-9);
+			long verif =raf1.readLong();
+			raf1.seek(positionOldString-9);
+			System.out.println(raf1.readLong() + " droite  " +  verif);
+			}else {
+				raf1.seek(positionOldString-9);
+				long pos = raf1.readLong();
+				n ++;
+				insertAdress(raf1, readInternLineInternTree(raf1, pos), n);
+			}
 		}
 		System.out.println("Fin méthode Insert Adress");
 
@@ -106,7 +139,7 @@ public class RmrTreeRmr {
 	public static String readInternLine(RandomAccessFile raf, int o) {
 		
 		String internLine = "";
-		long positionOldString = 278 * o + 278;
+		long positionOldString = o*278 + 278;
 		try {	
 			raf.seek(positionOldString-278);
 			byte [] tabBytes = new byte [278];
@@ -117,6 +150,22 @@ public class RmrTreeRmr {
 			e.printStackTrace();
 		}
 		System.out.println("retour ReadInternLine  "  + internLine);
+		return internLine;
+	}
+	public static String readInternLineInternTree(RandomAccessFile raf, long m) {
+		
+		String internLine = "";
+		
+		try {	
+			raf.seek(m-278);
+			byte [] tabBytes = new byte [278];
+			raf.read(tabBytes);
+			internLine = new  String(tabBytes);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("retour ReadInternLine Tree  "  + internLine);
 		return internLine;
 	}
 
