@@ -61,7 +61,7 @@ private static int nbOfInterns = 0;
 //			System.out.println(sizeLue + "     " +  sizeFile);
 			
 			
-			while(raf.read() < raf.length()) {
+			while(raf1.length() < raf.length()) {
 			raf.seek(278*nbOfInterns);
 				 byte[] b = new byte[278];
 			raf.read(b);
