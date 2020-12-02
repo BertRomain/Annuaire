@@ -21,6 +21,38 @@ public class Intern {
 		this.promotion = promotion;
 		this.year = year;
 	}
+	
+	public String justifyLine {
+		
+		String space1 = "";
+		String space2 = "";
+		String space3 = "";
+		String space4 = "";
+		String space5 = "";
+		
+		for (int i = 0 ; i < 100 - lastName.length() ; i++) {
+			space1 = space1 + " ";
+		}
+		
+		for (int i = 0 ; i < 100 - firstName.length() ; i++) {
+			space2 = space2 + " ";
+		}
+		
+		for (int i = 0 ; i < 5 - department.length() ; i++) {
+			space3 = space3 + " ";
+		}
+		
+		for (int i = 0 ; i < 40 - promotion.length() ; i++) {
+			space4 = space4 + " ";
+		}
+		
+		for (int i = 0 ; i < 40 - .length() ; i++) {
+			
+		}
+		
+	}
+	
+	
 
 	
 	

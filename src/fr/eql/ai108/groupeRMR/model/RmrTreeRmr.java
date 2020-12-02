@@ -36,6 +36,7 @@ public class RmrTreeRmr {
 		
 
 		try {
+			
 			raf = new RandomAccessFile(file, "rw");
 			String internString = "";
 			internString = readInternLine(raf, (long) 3);			
