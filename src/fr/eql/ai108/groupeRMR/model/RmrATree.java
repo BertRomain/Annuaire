@@ -30,13 +30,13 @@ public class RmrATree {
 		
 		//String theLastName = new String(lastName, StandardCharsets.UTF_8);
 
-		if (lastName[0]==35||lastName[0]==42) {
-			raf.seek(raf.getFilePointer()-30);
-			raf.writeBytes(intern.toLargeurFixe());
-			raf.writeLong(Long.MAX_VALUE);
-			raf.writeLong(Long.MAX_VALUE);
-			return index;
-		
-	}
+//		if (lastName[0]==35||lastName[0]==42) {
+//			raf.seek(raf.getFilePointer()-30);
+//			raf.writeBytes(intern.toLargeurFixe());
+//			raf.writeLong(Long.MAX_VALUE);
+//			raf.writeLong(Long.MAX_VALUE);
+//			return index;
+//		
+//	}
 }
 }
