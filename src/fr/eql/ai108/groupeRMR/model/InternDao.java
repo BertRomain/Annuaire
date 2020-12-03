@@ -188,10 +188,38 @@ public class InternDao {
 	}
 	
 	
-	public static void ReadTreeInOrder( long pos) {
+	public static long getParent( long pos) {
+		long parentPos = 0;
+		long childPosLeft = 0;
+		long childPosRight = 0;
+		int index = 0;
+		int lengthChildLeft = 260; 
+		int lengthChildRight = 269;
 		
+		try {
+			RandomAccessFile raf = new RandomAccessFile(writingFile, "rw");
+			
+			while(childPosLeft != pos && raf.read() != -1) {
+				raf.seek(lengthChildLeft * index);
+				childPosLeft = raf.readLong();
+				index ++;
+			}
 		
+			index = 0;
+			
+			while(childPosRight != pos && raf.read() != -1) {
+				raf.seek(lengthChildRight* index); 
+				childPosRight = raf.readLong();
+				index ++;
+				
+			}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
+		return parentPos;
 	}
 	
 	
