@@ -147,7 +147,7 @@ public class InternDao {
 		try {
 	RandomAccessFile raf = new RandomAccessFile(writingFile, "rw");
 //	int n = 0;
-	raf.seek(1112 -18);
+	raf.seek(2502 -9);
 	pos = raf.readLong();
 	System.out.println(pos);
 //	raf.seek(260);
