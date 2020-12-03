@@ -22,7 +22,7 @@ public static void main(String[] args) {
 			
 		}
 		System.out.println("L'arbre est de hauteur " + abr.hauteur());
-	//abr.ecrireListeTriee();
+	abr.ecrireListeTriee();
 		
 		
 		

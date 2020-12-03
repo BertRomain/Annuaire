@@ -2,6 +2,7 @@ package fr.eql.ai108.groupeRMR.model;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -136,6 +137,118 @@ public class InternDao {
 			e.printStackTrace();
 		}
 	}
+	private static String writingFile = "C:/Users/formation/Desktop/internTree.bin";
+	
+	public static long findLastLeftChild() {
+		long pos = 0;
+		String bString = "";
+		byte [] b = new byte[1];
+		try {
+	RandomAccessFile raf = new RandomAccessFile(writingFile, "rw");
+	int n = 0;
+	raf.seek(278 * n +260);
+	pos = raf.readLong();
+	raf.seek(278 * n +260);
+	b = new byte [1];
+	raf.read(b);
+	bString = b.toString();
+	System.out.println(bString);
+	System.out.println(pos);
+	if (bString.equals("0") == false) {
+		raf.seek(pos - 18);
+		b = new byte [1];
+		raf.read(b);
+		bString = b.toString();
+		raf.seek(pos - 18);
+		pos = raf.readLong();
+		System.out.println(bString);
+		System.out.println(pos);
+	}if (bString.equals("0") == false) {
+		raf.seek(pos - 18);
+		b = new byte [1];
+		raf.read(b);
+		bString = b.toString();
+		raf.seek(pos - 18);
+		pos = raf.readLong();
+		System.out.println(bString);
+		System.out.println(pos);
+	}
+	
+} catch (IOException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
+		return pos;
+		
+	}
+	public static void main(String[] args) {
+		findLastLeftChild();
+	}
+
+
+//public static List<Etudiant> getAllOrdre(){
+//
+//		List<Etudiant> etudiantsOrdre = new ArrayList<Etudiant>();
+//		RandomAccessFile raf = null;
+//
+//		try {
+//			raf = new RandomAccessFile(fileArbre, "rw");
+//			etudiantsOrdre=getAllOrdreBin(0l, raf);// 0 est l'adresse de la racine dans le fichier
+//
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}finally {
+//			try {
+//				raf.close();
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+//
+//		return etudiantsOrdre;
+//
+//	}
+
+
+//private static List<Etudiant> getAllOrdreBin(Long noeud, RandomAccessFile raf) throws IOException {
+//		raf.seek(noeud);
+//		List<Etudiant> etudiantsOrdre = new ArrayList<Etudiant>();
+//
+//		String[] etudiant =new String[5];
+//		for (int i = 0; i < etudiant.length; i++) {
+//			byte[] temp = new byte[structure[i]];
+//			raf.read(temp);
+//			etudiant[i]=new String (temp, StandardCharsets.ISO_8859_1).trim();
+//		}
+//		Etudiant etudiantduNoeud = new Etudiant(etudiant[0], etudiant[1], etudiant[2], etudiant[3], etudiant[4]);	
+//		Long gauche = raf.readLong();
+//
+//		Long droite = raf.readLong();
+//		if (gauche!=Long.MAX_VALUE) {
+//			etudiantsOrdre.addAll(getAllOrdreBin(gauche,raf));
+//		}
+//		etudiantsOrdre.add(etudiantduNoeud);
+//		if (droite!=Long.MAX_VALUE) {
+//			etudiantsOrdre.addAll(getAllOrdreBin(droite,raf));
+//		}
+//		return etudiantsOrdre;
+//	}
+//	private static Long dernierDescendantBin(Long noeud, RandomAccessFile raf) throws IOException 
+//	{
+//		raf.seek(noeud+85);
+//		Long droite = raf.readLong();
+//		if (droite == Long.MAX_VALUE)
+//			return noeud;
+//		return dernierDescendantBin(droite,raf);
+//
+//	}
+
+
+
+
+	
 	
 
 }

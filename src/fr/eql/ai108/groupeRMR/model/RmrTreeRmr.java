@@ -168,78 +168,78 @@ private static int nbOfInterns = 0;
 		System.out.println("retour ReadInternLine Tree  "  + internLine);
 		return internLine;
 	}
-
-	public static void writeInternLine(RandomAccessFile raf, String internLine , long index)	{
-		try {
-			int size = lengthOfRecord;
-			long offset = size * index;
-			raf.seek(offset);	
-			raf.writeBytes(internLine);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	public static String readChildLeftAdress (RandomAccessFile raf, long index) {
-		int size = childLength;	
-		long offset = lengthOfRecord * index + lineLengthBeforeChildLeft;
-		String childLeftAdress = "";
-		try {
-			raf.seek(offset);
-			byte [] tabBytes = new byte [size];
-			raf.read(tabBytes);
-			childLeftAdress = new String(tabBytes);
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return childLeftAdress;
-	}
-
-	public static String readChildRightAdress (RandomAccessFile raf, long index) {
-		int size = childLength;	
-		long offset = lengthOfRecord * index + lineLengthBeforeChildRight;
-		String childRightAdress = "";
-		try {
-			raf.seek(offset);
-			byte [] tabBytes = new byte [size];
-			raf.read(tabBytes);
-			childRightAdress = new String(tabBytes);
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return childRightAdress;
-	}
-
-	public static void writeChildLeftAdress(RandomAccessFile raf, String childLeftAdress, long index) {
-		long offset  = lengthOfRecord * index + lineLengthBeforeChildLeft;
-		//String childLeftAdressString = "";
-		try {
-			raf.seek(offset);				
-			raf.writeBytes(childLeftAdress);
-			//System.out.println("ce que l'on écrit" + childLeftAdress);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
-	public static void writeChildRightAdress(RandomAccessFile raf, String childRightAdress, long index) {
-		long offset  = lengthOfRecord * index + lineLengthBeforeChildRight;
-		//String childLeftAdressString = "";
-		try {
-			raf.seek(offset);				
-			raf.writeBytes(childRightAdress);
-			System.out.println("ce que l'on ï¿½crit" + childRightAdress);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
+//
+//	public static void writeInternLine(RandomAccessFile raf, String internLine , long index)	{
+//		try {
+//			int size = lengthOfRecord;
+//			long offset = size * index;
+//			raf.seek(offset);	
+//			raf.writeBytes(internLine);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
+//
+//	public static String readChildLeftAdress (RandomAccessFile raf, long index) {
+//		int size = childLength;	
+//		long offset = lengthOfRecord * index + lineLengthBeforeChildLeft;
+//		String childLeftAdress = "";
+//		try {
+//			raf.seek(offset);
+//			byte [] tabBytes = new byte [size];
+//			raf.read(tabBytes);
+//			childLeftAdress = new String(tabBytes);
+//
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return childLeftAdress;
+//	}
+//
+//	public static String readChildRightAdress (RandomAccessFile raf, long index) {
+//		int size = childLength;	
+//		long offset = lengthOfRecord * index + lineLengthBeforeChildRight;
+//		String childRightAdress = "";
+//		try {
+//			raf.seek(offset);
+//			byte [] tabBytes = new byte [size];
+//			raf.read(tabBytes);
+//			childRightAdress = new String(tabBytes);
+//
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return childRightAdress;
+//	}
+//
+//	public static void writeChildLeftAdress(RandomAccessFile raf, String childLeftAdress, long index) {
+//		long offset  = lengthOfRecord * index + lineLengthBeforeChildLeft;
+//		//String childLeftAdressString = "";
+//		try {
+//			raf.seek(offset);				
+//			raf.writeBytes(childLeftAdress);
+//			//System.out.println("ce que l'on écrit" + childLeftAdress);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//
+//	}
+//
+//	public static void writeChildRightAdress(RandomAccessFile raf, String childRightAdress, long index) {
+//		long offset  = lengthOfRecord * index + lineLengthBeforeChildRight;
+//		//String childLeftAdressString = "";
+//		try {
+//			raf.seek(offset);				
+//			raf.writeBytes(childRightAdress);
+//			System.out.println("ce que l'on ï¿½crit" + childRightAdress);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//
+//	}
 }
