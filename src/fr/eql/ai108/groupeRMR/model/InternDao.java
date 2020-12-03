@@ -146,48 +146,37 @@ public class InternDao {
 
 		try {
 	RandomAccessFile raf = new RandomAccessFile(writingFile, "rw");
-//	int n = 0;
-	raf.seek(2502 -9);
+	raf.seek(260);
 	pos = raf.readLong();
 	System.out.println(pos);
-//	raf.seek(260);
-//	b = new byte [1];
-//	raf.read(b);
-//	bString = new String(b);
-//	System.out.println(bString);
-//	System.out.println(pos);
+	raf.seek(260);
+	b = new byte [1];
+	raf.read(b);
+	bString = new String(b);
+	System.out.println(bString);
+	System.out.println(pos);
 	raf.seek(pos - 278);
 	byte[] tabByte = new byte[278];
-	
+
 	raf.read(tabByte);
 	String name = new String(tabByte);
 	System.out.println(name);
-	
-	
-	
-//	
-//	if (bString.equals("0") == false) {
-//		raf.seek(pos - 18);
-//		b = new byte [1];
-//		raf.read(b);
-//		bString = new String(b);
-//		raf.seek(pos - 18);
-//		pos = 0;
-//		pos = raf.readLong();
-//		raf.seek(pos);
-//		System.out.println(bString);
-//		System.out.println(pos);
-//	}if (bString.equals("0") == false) {
-//		raf.seek(pos - 18);
-//		b = new byte [1];
-//		raf.read(b);
-//		bString = new String(b);
-//		raf.seek(pos - 18);
-//		pos = 0;
-//		pos = raf.readLong();
-//		System.out.println(bString);
-//		System.out.println(pos);
-//	}
+
+
+
+
+	while (bString.equals("0") == false) {
+		raf.seek(pos - 18);
+		b = new byte [1];
+		raf.read(b);
+		bString = new String(b);
+		raf.seek(pos - 18);
+		pos = 0;
+		pos = raf.readLong();
+		raf.seek(pos);
+		System.out.println(bString);
+		System.out.println(pos);
+	}
 	
 } catch (IOException e) {
 	// TODO Auto-generated catch block
@@ -197,6 +186,11 @@ public class InternDao {
 		
 	}
 	public static void main(String[] args) {
+//		String str1 = "RICARDE                                                                                             ;Christophe                                                                                          ;95   ;AI 81                                   ;2011      ;00000000;00000000;";
+//		String str2 = "SLIVCA                                                                                              ;Diana                                                                                               ;95   ;AI 84                                   ;2012      ;00000000;00000000;";
+//		System.out.println(str1.compareTo(str2));
+//		
+		
 		findLastLeftChild();
 		
 	}

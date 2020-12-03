@@ -123,20 +123,20 @@ private static int nbOfInterns = 0;
 
 		}
 		
-		if((newString.compareTo(readInternLineInternTree(raf1, pos)) > 0)) {
+		else if((newString.compareTo(readInternLineInternTree(raf1, pos)) > 0)) {
 			raf1.seek(positionOldString-9);
 			byte [] b = new byte [1];
 			raf1.read(b);
 			String bString = new String(b);
 			
 			if (bString.equals("0")) {
-			childRightAdress = positionNewString;
-			raf1.seek(positionOldString-9);
-			raf1.writeLong(childRightAdress);
-			raf1.seek(positionOldString-9);
-			long verif =raf1.readLong();
-			raf1.seek(positionOldString-9);
-			System.out.println(raf1.readLong() + " droite  " +  verif);
+				childRightAdress = positionNewString;
+				raf1.seek(positionOldString-9);
+				raf1.writeLong(childRightAdress);
+				raf1.seek(positionOldString-9);
+				long verif =raf1.readLong();
+				raf1.seek(positionOldString-9);
+				System.out.println(raf1.readLong() + " droite  " +  verif);
 			}else {
 				raf1.seek(positionOldString-9);
 				pos = raf1.readLong();
