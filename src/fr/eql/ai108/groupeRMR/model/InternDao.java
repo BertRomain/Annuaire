@@ -171,6 +171,7 @@ public class InternDao {
 		raf.read(b);
 		bString = new String(b);
 		raf.seek(pos - 18);
+		
 		pos = 0;
 		pos = raf.readLong();
 		raf.seek(pos);
@@ -185,6 +186,17 @@ public class InternDao {
 		return pos;
 		
 	}
+	
+	
+	public static void ReadTreeInOrder( long pos) {
+		
+		
+		
+	}
+	
+	
+	
+	
 	public static void main(String[] args) {
 //		String str1 = "RICARDE                                                                                             ;Christophe                                                                                          ;95   ;AI 81                                   ;2011      ;00000000;00000000;";
 //		String str2 = "SLIVCA                                                                                              ;Diana                                                                                               ;95   ;AI 84                                   ;2012      ;00000000;00000000;";
@@ -193,7 +205,11 @@ public class InternDao {
 		
 		findLastLeftChild();
 		
+		
 	}
+	
+	
+	
 
 
 //public static List<Etudiant> getAllOrdre(){

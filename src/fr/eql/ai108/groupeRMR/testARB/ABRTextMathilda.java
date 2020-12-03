@@ -18,7 +18,7 @@ public class ABRTextMathilda {
 		try {
 	RandomAccessFile raf = new RandomAccessFile(writingFile, "rw");
 //	int n = 0;
-	raf.seek(48928 -18);
+	raf.seek(89794 -9);
 	pos = raf.readLong();
 	System.out.println(pos);
 //	raf.seek(260);
