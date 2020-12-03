@@ -60,17 +60,17 @@ private static int nbOfInterns = 0;
 //			long sizeLue = raf.readLong();
 //			System.out.println(sizeLue + "     " +  sizeFile);
 			
-			
+			nbOfInterns = 1;
 			while(raf1.length() < raf.length()) {
 			raf.seek(278*nbOfInterns);
 				 byte[] b = new byte[278];
 			raf.read(b);
-			nbOfInterns ++;
+			
 			long end = raf1.length();
 			raf1.seek(end);
 			raf1.write(b);
 			insertAdress(raf1, readInternLine(raf, nbOfInterns),0);
-			
+			nbOfInterns ++;
 
 			}
 			
@@ -108,10 +108,12 @@ private static int nbOfInterns = 0;
 				long pos = raf1.readLong() ;
 				raf1.seek(pos);
 				n ++;
-				insertAdress(raf1, readInternLineInternTree(raf1,pos), n);
+				insertAdress(raf1, newString, n);
 			}
 
-		}else if((newString.compareTo(readInternLine(raf1, n)) > 0)) {
+		}
+		
+		if((newString.compareTo(readInternLine(raf1, n)) > 0)) {
 			raf1.seek(positionOldString-9);
 			byte [] b = new byte [1];
 			raf1.read(b);
@@ -128,8 +130,9 @@ private static int nbOfInterns = 0;
 			}else {
 				raf1.seek(positionOldString-9);
 				long pos = raf1.readLong();
+				raf1.seek(pos);
 				n ++;
-				insertAdress(raf1, readInternLineInternTree(raf1, pos), n);
+				insertAdress(raf1, newString, n);
 			}
 		}
 		System.out.println("Fin méthode Insert Adress");
