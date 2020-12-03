@@ -10,6 +10,8 @@ import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eql.ai108.groupeRMR.model.Intern;
+
 
 
 
@@ -149,9 +151,9 @@ public class InternDaoTest {
 	raf.seek(278 * n +260);
 	pos = raf.readLong();
 	raf.seek(278 * n +260);
-	b = new byte [1];
+//	b = new byte [1];
 	raf.read(b);
-	bString = b.toString();
+	bString = new String(b);
 	System.out.println(bString);
 	System.out.println(pos);
 	if (bString.equals("0") == false) {
@@ -163,7 +165,42 @@ public class InternDaoTest {
 		pos = raf.readLong();
 		System.out.println(bString);
 		System.out.println(pos);
-	}if (bString.equals("0") == false) {
+	}
+//		if (bString.equals("0") == false) {
+//		raf.seek(pos - 18);
+//		b = new byte [1];
+//		raf.read(b);
+//		bString = b.toString();
+//		raf.seek(pos - 18);
+//		pos = raf.readLong();
+//		System.out.println(bString);
+//		System.out.println(pos);
+//	}
+//	
+} catch (IOException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
+		return pos;
+		
+	}
+	public static void main(String[] args) {
+		
+		long pos = 0;
+		String bString = "";
+		byte [] b = new byte[1];
+		try {
+	RandomAccessFile raf = new RandomAccessFile(writingFile, "rw");
+	int n = 0;
+	raf.seek(278 * n +260);
+	pos = raf.readLong();
+	raf.seek(278 * n +260);
+//	b = new byte [1];
+	raf.read(b);
+	bString = new String(b);
+	System.out.println(bString);
+	System.out.println(pos);
+	if (bString.equals("0") == false) {
 		raf.seek(pos - 18);
 		b = new byte [1];
 		raf.read(b);
@@ -173,16 +210,22 @@ public class InternDaoTest {
 		System.out.println(bString);
 		System.out.println(pos);
 	}
-	
+//		if (bString.equals("0") == false) {
+//		raf.seek(pos - 18);
+//		b = new byte [1];
+//		raf.read(b);
+//		bString = b.toString();
+//		raf.seek(pos - 18);
+//		pos = raf.readLong();
+//		System.out.println(bString);
+//		System.out.println(pos);
+//	}
+//	
 } catch (IOException e) {
 	// TODO Auto-generated catch block
 	e.printStackTrace();
 }
-		return pos;
-		
-	}
-	public static void main(String[] args) {
-		findLastLeftChild();
+		//findLastLeftChild();
 	}
 
 
