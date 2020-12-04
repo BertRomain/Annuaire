@@ -15,6 +15,8 @@ public class UserPane extends BorderPane {
 		setLeft(formPannel);	
 		setCenter(tablePannel);
 		setPrefSize(1919, 1008);
+		formPannel.setStyle("-fx-background-color: rgb(183,204,229)");
+		tablePannel.setStyle("-fx-background-color: rgb(183,204,229)");
 
 	}
 

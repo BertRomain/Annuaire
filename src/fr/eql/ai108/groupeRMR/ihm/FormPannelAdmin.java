@@ -79,7 +79,8 @@ public class FormPannelAdmin extends GridPane {
 				"70","71","72","73","74","75","76","77","78","79",
 				"80","81","82","83","84","85","86","87","88","89",
 				"90","91","92","93","94","95",
-				"971","972","973","974","976", "Autre");
+				"971","972","973","974","976", "Ya", "VE", "US", "SU", "BR", "DZ",
+				"TN", "MA");
 		addRow(2, lblDepartment,cbDepartment);
 		cbDepartment.setVisibleRowCount(10);
 		cbDepartment.getSelectionModel().select(0);;
@@ -108,12 +109,21 @@ public class FormPannelAdmin extends GridPane {
 		btnReturnWelcomeBox.setAlignment(Pos.CENTER);
 		add(btnReturnWelcomeBox, 0, 13, 2, 1);
 		
-		btnDoc = new Button("Générer fichier 'Documentation utilisateur'");
+		btnDoc = new Button("Documentation utilisateur (page web)");
 		btnDoc.setPrefSize(590, 100);
 		btnDocBox = new HBox(50);
 		btnDocBox.getChildren().add(btnDoc);
 		btnDocBox.setAlignment(Pos.CENTER);
 		add(btnDocBox, 0, 14, 2, 1);
+		
+		btnDoc.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				BrowserControl.displayURL("https://github.com/BertRomain/Annuaire/blob/main/README.md");
+				
+			}
+		});
 
 		btnReturn.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -226,7 +236,7 @@ public class FormPannelAdmin extends GridPane {
 		btnSelectionExport.setOnAction(e -> {
 			try {
 				String export = txtSearch.getText().toString();
-				ExportPdf.toFile(TablePannel.tableView, "c:/DossierAI108/annuaire_exporté_extrait_"+ export + ".pdf");
+				ExportPdf.toFile(TablePannel.tableView, "c:/Annuaire_EQL/annuaire_exporté_extrait_"+ export + ".pdf");
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
@@ -256,7 +266,7 @@ public class FormPannelAdmin extends GridPane {
 				adminPane.getTablePannel().getObservableInterns().add(intern2);
 				index ++;
 				}
-				ExportPdf.toFile(TablePannel.tableView, "c:/DossierAI108/annuaire_exporté_entier.pdf");
+				ExportPdf.toFile(TablePannel.tableView, "c:/Annuaire_EQL/annuaire_exporté_entier.pdf");
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
